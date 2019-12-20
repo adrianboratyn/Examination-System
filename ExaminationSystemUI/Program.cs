@@ -16,7 +16,11 @@ namespace ExaminationSystemUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminPageForm());
+
+            // Initialize the database connection
+            ExaminationSystemLibrary.GlobalConfig.InitializeConnections("text");
+
+            Application.Run(new TeacherPageForm());
         }
     }
 }

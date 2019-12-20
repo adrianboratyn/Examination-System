@@ -115,5 +115,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExaminationSystemLibrary\ExaminationSystemLibrary.csproj">
+      <Project>{24840189-d8e2-4aa8-99ac-ed7f76aa32de}</Project>
+      <Name>ExaminationSystemLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

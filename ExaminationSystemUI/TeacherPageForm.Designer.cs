@@ -35,6 +35,7 @@
             this.pageNameLabel = new System.Windows.Forms.Label();
             this.teacherMenuTabControl = new System.Windows.Forms.TabControl();
             this.teacherDashboardPage = new System.Windows.Forms.TabPage();
+            this.teacherMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.teacherEditExamPage = new System.Windows.Forms.TabPage();
             this.deleteEditedButton = new System.Windows.Forms.Button();
             this.questionForEditListBox = new System.Windows.Forms.ListBox();
@@ -102,7 +103,6 @@
             this.selectExamResultLabel = new System.Windows.Forms.Label();
             this.teacherStudentListPage = new System.Windows.Forms.TabPage();
             this.teacherStudentListBox = new System.Windows.Forms.ListBox();
-            this.teacherMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.teacherPagePanel.SuspendLayout();
             this.teacherMenuTabControl.SuspendLayout();
             this.teacherDashboardPage.SuspendLayout();
@@ -202,6 +202,12 @@
             this.teacherDashboardPage.Size = new System.Drawing.Size(631, 556);
             this.teacherDashboardPage.TabIndex = 0;
             this.teacherDashboardPage.Text = "Dashboard";
+            // 
+            // teacherMonthCalendar
+            // 
+            this.teacherMonthCalendar.Location = new System.Drawing.Point(348, 12);
+            this.teacherMonthCalendar.Name = "teacherMonthCalendar";
+            this.teacherMonthCalendar.TabIndex = 1;
             // 
             // teacherEditExamPage
             // 
@@ -527,6 +533,7 @@
             this.createExamButton.TabIndex = 30;
             this.createExamButton.Text = "Create Exam";
             this.createExamButton.UseVisualStyleBackColor = true;
+            this.createExamButton.Click += new System.EventHandler(this.createExamButton_Click);
             // 
             // deleteSelectedButton
             // 
@@ -542,14 +549,17 @@
             this.deleteSelectedButton.TabIndex = 29;
             this.deleteSelectedButton.Text = "Delete selected";
             this.deleteSelectedButton.UseVisualStyleBackColor = true;
+            this.deleteSelectedButton.Click += new System.EventHandler(this.deleteSelectedButton_Click);
             // 
             // createdQuestionListBox
             // 
+            this.createdQuestionListBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.createdQuestionListBox.ForeColor = System.Drawing.Color.Red;
             this.createdQuestionListBox.FormattingEnabled = true;
-            this.createdQuestionListBox.ItemHeight = 25;
+            this.createdQuestionListBox.ItemHeight = 21;
             this.createdQuestionListBox.Location = new System.Drawing.Point(373, 130);
             this.createdQuestionListBox.Name = "createdQuestionListBox";
-            this.createdQuestionListBox.Size = new System.Drawing.Size(248, 379);
+            this.createdQuestionListBox.Size = new System.Drawing.Size(248, 361);
             this.createdQuestionListBox.TabIndex = 28;
             // 
             // addQuestionGroupBox
@@ -610,6 +620,7 @@
             this.addQuestionButton.TabIndex = 19;
             this.addQuestionButton.Text = "Add question";
             this.addQuestionButton.UseVisualStyleBackColor = true;
+            this.addQuestionButton.Click += new System.EventHandler(this.addQuestionButton_Click);
             // 
             // answerDTextBox
             // 
@@ -1004,12 +1015,6 @@
             this.teacherStudentListBox.Name = "teacherStudentListBox";
             this.teacherStudentListBox.Size = new System.Drawing.Size(379, 429);
             this.teacherStudentListBox.TabIndex = 35;
-            // 
-            // teacherMonthCalendar
-            // 
-            this.teacherMonthCalendar.Location = new System.Drawing.Point(348, 12);
-            this.teacherMonthCalendar.Name = "teacherMonthCalendar";
-            this.teacherMonthCalendar.TabIndex = 1;
             // 
             // TeacherPageForm
             // 
