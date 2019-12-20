@@ -76,6 +76,7 @@
             this.studentLastNameLabel = new System.Windows.Forms.Label();
             this.studentFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.studentFirstNameLabel = new System.Windows.Forms.Label();
+            this.backToLoginButton = new System.Windows.Forms.Button();
             this.teacherAccountGroupBox.SuspendLayout();
             this.adminAccountGroupBox.SuspendLayout();
             this.studentAccountGroupBox.SuspendLayout();
@@ -117,6 +118,7 @@
             this.studentRoleButton.TabIndex = 8;
             this.studentRoleButton.Text = "Student";
             this.studentRoleButton.UseVisualStyleBackColor = true;
+            this.studentRoleButton.Click += new System.EventHandler(this.studentRoleButton_Click);
             // 
             // teacherRoleButton
             // 
@@ -132,6 +134,7 @@
             this.teacherRoleButton.TabIndex = 9;
             this.teacherRoleButton.Text = "Teacher";
             this.teacherRoleButton.UseVisualStyleBackColor = true;
+            this.teacherRoleButton.Click += new System.EventHandler(this.teacherRoleButton_Click);
             // 
             // adminRoleButton
             // 
@@ -147,6 +150,7 @@
             this.adminRoleButton.TabIndex = 10;
             this.adminRoleButton.Text = "Admin";
             this.adminRoleButton.UseVisualStyleBackColor = true;
+            this.adminRoleButton.Click += new System.EventHandler(this.adminRoleButton_Click);
             // 
             // teacherAccountGroupBox
             // 
@@ -164,12 +168,13 @@
             this.teacherAccountGroupBox.Controls.Add(this.teacherLastNameLabel);
             this.teacherAccountGroupBox.Controls.Add(this.teacherFirstNameTextBox);
             this.teacherAccountGroupBox.Controls.Add(this.teacherFirstNameLabel);
-            this.teacherAccountGroupBox.Location = new System.Drawing.Point(12, 133);
+            this.teacherAccountGroupBox.Location = new System.Drawing.Point(12, 118);
             this.teacherAccountGroupBox.Name = "teacherAccountGroupBox";
             this.teacherAccountGroupBox.Size = new System.Drawing.Size(552, 261);
             this.teacherAccountGroupBox.TabIndex = 14;
             this.teacherAccountGroupBox.TabStop = false;
             this.teacherAccountGroupBox.Text = "Teacher Account";
+            this.teacherAccountGroupBox.Visible = false;
             // 
             // teacherCreateAccountButton
             // 
@@ -185,6 +190,7 @@
             this.teacherCreateAccountButton.TabIndex = 53;
             this.teacherCreateAccountButton.Text = "Create Teacher Account";
             this.teacherCreateAccountButton.UseVisualStyleBackColor = true;
+            this.teacherCreateAccountButton.Click += new System.EventHandler(this.teacherCreateAccountButton_Click);
             // 
             // teacherReturnButton
             // 
@@ -200,6 +206,7 @@
             this.teacherReturnButton.TabIndex = 52;
             this.teacherReturnButton.Text = "Return";
             this.teacherReturnButton.UseVisualStyleBackColor = true;
+            this.teacherReturnButton.Click += new System.EventHandler(this.teacherReturnButton_Click);
             // 
             // teacherPasswordTextBox
             // 
@@ -210,7 +217,7 @@
             this.teacherPasswordTextBox.Name = "teacherPasswordTextBox";
             this.teacherPasswordTextBox.Size = new System.Drawing.Size(100, 26);
             this.teacherPasswordTextBox.TabIndex = 51;
-            this.teacherPasswordTextBox.Text = "Password";
+            this.teacherPasswordTextBox.UseSystemPasswordChar = true;
             // 
             // teacherPasswordLabel
             // 
@@ -232,7 +239,6 @@
             this.teacherSchoolTextBox.Name = "teacherSchoolTextBox";
             this.teacherSchoolTextBox.Size = new System.Drawing.Size(100, 26);
             this.teacherSchoolTextBox.TabIndex = 49;
-            this.teacherSchoolTextBox.Text = "School";
             // 
             // teacherSchoolLabel
             // 
@@ -254,7 +260,6 @@
             this.teacherAcademicTitleTextBox.Name = "teacherAcademicTitleTextBox";
             this.teacherAcademicTitleTextBox.Size = new System.Drawing.Size(118, 26);
             this.teacherAcademicTitleTextBox.TabIndex = 47;
-            this.teacherAcademicTitleTextBox.Text = "Academic Title";
             // 
             // teacherAcademicTitleLabel
             // 
@@ -276,7 +281,6 @@
             this.teacherUsernameTextBox.Name = "teacherUsernameTextBox";
             this.teacherUsernameTextBox.Size = new System.Drawing.Size(100, 26);
             this.teacherUsernameTextBox.TabIndex = 45;
-            this.teacherUsernameTextBox.Text = "Username";
             // 
             // teacherUsernameLabel
             // 
@@ -298,7 +302,6 @@
             this.teacherLastNameTextBox.Name = "teacherLastNameTextBox";
             this.teacherLastNameTextBox.Size = new System.Drawing.Size(100, 26);
             this.teacherLastNameTextBox.TabIndex = 43;
-            this.teacherLastNameTextBox.Text = "Last Name";
             // 
             // teacherLastNameLabel
             // 
@@ -320,7 +323,6 @@
             this.teacherFirstNameTextBox.Name = "teacherFirstNameTextBox";
             this.teacherFirstNameTextBox.Size = new System.Drawing.Size(100, 26);
             this.teacherFirstNameTextBox.TabIndex = 41;
-            this.teacherFirstNameTextBox.Text = "First Name";
             // 
             // teacherFirstNameLabel
             // 
@@ -345,12 +347,13 @@
             this.adminAccountGroupBox.Controls.Add(this.adminLastNameLabel);
             this.adminAccountGroupBox.Controls.Add(this.adminFirstNameTextBox);
             this.adminAccountGroupBox.Controls.Add(this.adminFirstNameLabel);
-            this.adminAccountGroupBox.Location = new System.Drawing.Point(12, 133);
+            this.adminAccountGroupBox.Location = new System.Drawing.Point(12, 118);
             this.adminAccountGroupBox.Name = "adminAccountGroupBox";
             this.adminAccountGroupBox.Size = new System.Drawing.Size(552, 261);
             this.adminAccountGroupBox.TabIndex = 15;
             this.adminAccountGroupBox.TabStop = false;
             this.adminAccountGroupBox.Text = "Admin Account";
+            this.adminAccountGroupBox.Visible = false;
             // 
             // adminCreateAccountButton
             // 
@@ -366,6 +369,7 @@
             this.adminCreateAccountButton.TabIndex = 49;
             this.adminCreateAccountButton.Text = "Create Admin Account";
             this.adminCreateAccountButton.UseVisualStyleBackColor = true;
+            this.adminCreateAccountButton.Click += new System.EventHandler(this.adminCreateAccountButton_Click);
             // 
             // adminReturnButton
             // 
@@ -381,6 +385,7 @@
             this.adminReturnButton.TabIndex = 48;
             this.adminReturnButton.Text = "Return";
             this.adminReturnButton.UseVisualStyleBackColor = true;
+            this.adminReturnButton.Click += new System.EventHandler(this.adminReturnButton_Click);
             // 
             // adminPasswordTextBox
             // 
@@ -391,7 +396,7 @@
             this.adminPasswordTextBox.Name = "adminPasswordTextBox";
             this.adminPasswordTextBox.Size = new System.Drawing.Size(100, 26);
             this.adminPasswordTextBox.TabIndex = 47;
-            this.adminPasswordTextBox.Text = "Password";
+            this.adminPasswordTextBox.UseSystemPasswordChar = true;
             // 
             // adminPasswordLabel
             // 
@@ -413,7 +418,6 @@
             this.adminUsernameTextBox.Name = "adminUsernameTextBox";
             this.adminUsernameTextBox.Size = new System.Drawing.Size(100, 26);
             this.adminUsernameTextBox.TabIndex = 45;
-            this.adminUsernameTextBox.Text = "Username";
             // 
             // adminUsernameLabel
             // 
@@ -435,7 +439,6 @@
             this.adminLastNameTextBox.Name = "adminLastNameTextBox";
             this.adminLastNameTextBox.Size = new System.Drawing.Size(100, 26);
             this.adminLastNameTextBox.TabIndex = 43;
-            this.adminLastNameTextBox.Text = "Last Name";
             // 
             // adminLastNameLabel
             // 
@@ -457,7 +460,6 @@
             this.adminFirstNameTextBox.Name = "adminFirstNameTextBox";
             this.adminFirstNameTextBox.Size = new System.Drawing.Size(100, 26);
             this.adminFirstNameTextBox.TabIndex = 41;
-            this.adminFirstNameTextBox.Text = "First Name";
             // 
             // adminFirstNameLabel
             // 
@@ -488,12 +490,13 @@
             this.studentAccountGroupBox.Controls.Add(this.studentLastNameLabel);
             this.studentAccountGroupBox.Controls.Add(this.studentFirstNameTextBox);
             this.studentAccountGroupBox.Controls.Add(this.studentFirstNameLabel);
-            this.studentAccountGroupBox.Location = new System.Drawing.Point(12, 133);
+            this.studentAccountGroupBox.Location = new System.Drawing.Point(12, 118);
             this.studentAccountGroupBox.Name = "studentAccountGroupBox";
             this.studentAccountGroupBox.Size = new System.Drawing.Size(552, 261);
             this.studentAccountGroupBox.TabIndex = 16;
             this.studentAccountGroupBox.TabStop = false;
             this.studentAccountGroupBox.Text = "Student Account";
+            this.studentAccountGroupBox.Visible = false;
             // 
             // studentCreateAccountButton
             // 
@@ -509,6 +512,7 @@
             this.studentCreateAccountButton.TabIndex = 39;
             this.studentCreateAccountButton.Text = "Create Student Account";
             this.studentCreateAccountButton.UseVisualStyleBackColor = true;
+            this.studentCreateAccountButton.Click += new System.EventHandler(this.studentCreateAccountButton_Click);
             // 
             // studentReturnButton
             // 
@@ -524,6 +528,7 @@
             this.studentReturnButton.TabIndex = 38;
             this.studentReturnButton.Text = "Return";
             this.studentReturnButton.UseVisualStyleBackColor = true;
+            this.studentReturnButton.Click += new System.EventHandler(this.studentReturnButton_Click);
             // 
             // studentPasswordTextBox
             // 
@@ -534,7 +539,7 @@
             this.studentPasswordTextBox.Name = "studentPasswordTextBox";
             this.studentPasswordTextBox.Size = new System.Drawing.Size(100, 26);
             this.studentPasswordTextBox.TabIndex = 37;
-            this.studentPasswordTextBox.Text = "Password";
+            this.studentPasswordTextBox.UseSystemPasswordChar = true;
             // 
             // studentPasswordLabel
             // 
@@ -556,7 +561,6 @@
             this.studentDegreeCourseTextBox.Name = "studentDegreeCourseTextBox";
             this.studentDegreeCourseTextBox.Size = new System.Drawing.Size(134, 26);
             this.studentDegreeCourseTextBox.TabIndex = 35;
-            this.studentDegreeCourseTextBox.Text = "Degree Course";
             // 
             // studentDegreeCourseLabel
             // 
@@ -578,7 +582,6 @@
             this.studentSchoolTextBox.Name = "studentSchoolTextBox";
             this.studentSchoolTextBox.Size = new System.Drawing.Size(100, 26);
             this.studentSchoolTextBox.TabIndex = 33;
-            this.studentSchoolTextBox.Text = "School";
             // 
             // studentSchoolLabel
             // 
@@ -600,7 +603,7 @@
             this.studentAgeTextBox.Name = "studentAgeTextBox";
             this.studentAgeTextBox.Size = new System.Drawing.Size(100, 26);
             this.studentAgeTextBox.TabIndex = 31;
-            this.studentAgeTextBox.Text = "Age";
+            this.studentAgeTextBox.Text = "0";
             // 
             // studentAgeLabel
             // 
@@ -622,7 +625,6 @@
             this.studentUsernameTextBox.Name = "studentUsernameTextBox";
             this.studentUsernameTextBox.Size = new System.Drawing.Size(100, 26);
             this.studentUsernameTextBox.TabIndex = 29;
-            this.studentUsernameTextBox.Text = "Username";
             // 
             // studentUsernameLabel
             // 
@@ -644,7 +646,6 @@
             this.studentLastNameTextBox.Name = "studentLastNameTextBox";
             this.studentLastNameTextBox.Size = new System.Drawing.Size(100, 26);
             this.studentLastNameTextBox.TabIndex = 27;
-            this.studentLastNameTextBox.Text = "Last Name";
             // 
             // studentLastNameLabel
             // 
@@ -666,7 +667,6 @@
             this.studentFirstNameTextBox.Name = "studentFirstNameTextBox";
             this.studentFirstNameTextBox.Size = new System.Drawing.Size(100, 26);
             this.studentFirstNameTextBox.TabIndex = 25;
-            this.studentFirstNameTextBox.Text = "First Name";
             // 
             // studentFirstNameLabel
             // 
@@ -679,13 +679,28 @@
             this.studentFirstNameLabel.TabIndex = 24;
             this.studentFirstNameLabel.Text = "First Name";
             // 
+            // backToLoginButton
+            // 
+            this.backToLoginButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.backToLoginButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSalmon;
+            this.backToLoginButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSalmon;
+            this.backToLoginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backToLoginButton.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.backToLoginButton.ForeColor = System.Drawing.Color.Red;
+            this.backToLoginButton.Location = new System.Drawing.Point(182, 381);
+            this.backToLoginButton.Name = "backToLoginButton";
+            this.backToLoginButton.Size = new System.Drawing.Size(163, 38);
+            this.backToLoginButton.TabIndex = 17;
+            this.backToLoginButton.Text = "Back to login panel";
+            this.backToLoginButton.UseVisualStyleBackColor = true;
+            // 
             // CreateAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(579, 411);
-            this.Controls.Add(this.studentAccountGroupBox);
+            this.ClientSize = new System.Drawing.Size(579, 421);
+            this.Controls.Add(this.backToLoginButton);
             this.Controls.Add(this.adminRoleButton);
             this.Controls.Add(this.teacherRoleButton);
             this.Controls.Add(this.studentRoleButton);
@@ -693,13 +708,15 @@
             this.Controls.Add(this.titleCreateAccountLabel);
             this.Controls.Add(this.adminAccountGroupBox);
             this.Controls.Add(this.teacherAccountGroupBox);
+            this.Controls.Add(this.studentAccountGroupBox);
             this.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ForeColor = System.Drawing.Color.Red;
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.MaximumSize = new System.Drawing.Size(595, 450);
-            this.MinimumSize = new System.Drawing.Size(595, 450);
+            this.MaximumSize = new System.Drawing.Size(595, 460);
+            this.MinimumSize = new System.Drawing.Size(595, 460);
             this.Name = "CreateAccountForm";
             this.Text = "Examination System";
+            this.Load += new System.EventHandler(this.CreateAccountForm_Load);
             this.teacherAccountGroupBox.ResumeLayout(false);
             this.teacherAccountGroupBox.PerformLayout();
             this.adminAccountGroupBox.ResumeLayout(false);
@@ -761,5 +778,6 @@
         private System.Windows.Forms.Label studentLastNameLabel;
         private System.Windows.Forms.TextBox studentFirstNameTextBox;
         private System.Windows.Forms.Label studentFirstNameLabel;
+        private System.Windows.Forms.Button backToLoginButton;
     }
 }
