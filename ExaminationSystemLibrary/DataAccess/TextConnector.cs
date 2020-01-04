@@ -32,7 +32,7 @@ namespace ExaminationSystemLibrary.DataAccess
         public TeacherModel CreateTeacherAccount(TeacherModel model)
         {
             //extension method
-            //load the text file and convert the text to List<StudentModel>
+            //load the text file and convert the text to List<TeacherModel>
             List<TeacherModel> models = TEACHERS_ACCOUNT_FILE.FullFilePath().LoadFile().ConvertToTeacherModels();
             //add new record 
             models.Add(model);
@@ -44,7 +44,7 @@ namespace ExaminationSystemLibrary.DataAccess
         public AdminModel CreateAdminAccount(AdminModel model)
         {
             //extension method
-            //load the text file and convert the text to List<StudentModel>
+            //load the text file and convert the text to List<AdminModel>
             List<AdminModel> models = ADMINS_ACCOUNT_FILE.FullFilePath().LoadFile().ConvertToAdminModels();
             //add new record 
             models.Add(model);
@@ -56,7 +56,7 @@ namespace ExaminationSystemLibrary.DataAccess
         public QuestionModel CreateQuestion(QuestionModel model)
         {
             //extension method
-            //load the text file and convert the text to List<StudentModel>
+            //load the text file and convert the text to List<QuestionModel>
             List<QuestionModel> models = QUESTIONS_LIST_FILE.FullFilePath().LoadFile().ConvertToQuestionModels();
             //add new record 
             models.Add(model);
@@ -68,7 +68,7 @@ namespace ExaminationSystemLibrary.DataAccess
         public ExamModel CreateExam(ExamModel model)
         {
             //extension method
-            //load the text file and convert the text to List<StudentModel>
+            //load the text file and convert the text to List<ExamModel>
             List<ExamModel> models = EXAMS_LIST_FILE.FullFilePath().LoadFile().ConvertToExamModels();
             //add new record 
             models.Add(model);
@@ -76,6 +76,35 @@ namespace ExaminationSystemLibrary.DataAccess
             models.SaveToExamFile(EXAMS_LIST_FILE);
 
             return model;
+        }
+        public List<ExamModel> GetExams()
+        {
+            List<ExamModel> output = new List<ExamModel>();
+            //using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            //{
+                //output = connection.Query<ExamModel>("dbo.spExam_Get").ToList();
+            //}
+            return output;
+        }
+
+        public List<QuestionModel> GetQuestions()
+        {
+            List<QuestionModel> output;
+            //using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            //{
+               // output = connection.Query<QuestionModel>("dbo.spQuestion_Get").ToList();
+            //}
+            return output = new List<QuestionModel>();
+        }
+
+        public ExamModel UpdateExam(ExamModel model1, ExamModel model2)
+        {
+            return model1;
+        }
+
+        public QuestionModel UpdateQuestion(QuestionModel model1, ExamModel model2)
+        {
+            return model1;
         }
     }
 }

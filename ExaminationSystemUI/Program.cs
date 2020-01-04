@@ -18,7 +18,7 @@ namespace ExaminationSystemUI
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Initialize the database connection
-            ExaminationSystemLibrary.GlobalConfig.InitializeConnections("text");
+            ExaminationSystemLibrary.GlobalConfig.InitializeConnections("sql");
 
             Application.Run(new TeacherPageForm());
         }

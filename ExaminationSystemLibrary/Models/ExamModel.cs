@@ -29,6 +29,12 @@ namespace ExaminationSystemLibrary.Models
         /// </summary>
         public List<QuestionModel> QuestionList { get; set; } = new List<QuestionModel>();
 
-
+        public string examName
+        {
+            get
+            {
+                return $"{Name}";
+            }
+        }
     }
 }

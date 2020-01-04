@@ -103,5 +103,65 @@ namespace ExaminationSystemLibrary.DataAccess
                 return model;
             }
         }
+
+        public List<ExamModel> GetExams()
+        {
+            List<ExamModel> output;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                output = connection.Query<ExamModel>("dbo.spExam_Get").ToList();
+            }
+            return output;
+        }
+
+        public List<QuestionModel> GetQuestions()
+        {
+            List<QuestionModel> output;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                output = connection.Query<QuestionModel>("dbo.spQuestion_Get").ToList();
+            }
+            return output;
+        }
+
+        public ExamModel UpdateExam(ExamModel model1, ExamModel model2)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                var p = new DynamicParameters();
+                p.Add("AccessCode", model1.AccessCode);
+                p.Add("Creator", model1.Creator);
+                p.Add("Name", model1.Name);
+                p.Add("NumberOfQuestions", model1.QuestionAmount);
+                p.Add("OldName", model2.Name);
+
+
+                connection.Execute("dbo.spExam_Update", p, commandType: CommandType.StoredProcedure);
+
+                return model1;
+            }
+        }
+
+        public QuestionModel UpdateQuestion(QuestionModel model1, ExamModel model2)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                var p = new DynamicParameters();
+                p.Add("ExamName", model1.ExamName);
+                p.Add("Question", model1.Question);
+                p.Add("Number", model1.QuestionNumber);
+                p.Add("AnswerA", model1.AnswerA);
+                p.Add("AnswerB", model1.AnswerB);
+                p.Add("AnswerC", model1.AnswerC);
+                p.Add("AnswerD", model1.AnswerD);
+                p.Add("CorrectAnswer", model1.CorrectAnswer);
+                p.Add("OldName", model2.Name);
+
+
+                connection.Execute("dbo.spQuestion_Update", p, commandType: CommandType.StoredProcedure);
+
+                return model1;
+            }
+        }
     }
 }
