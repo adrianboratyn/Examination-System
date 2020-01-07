@@ -129,7 +129,13 @@ namespace ExaminationSystemUI
                     studentSchoolTextBox.Text,
                     studentDegreeCourseTextBox.Text);
 
-                GlobalConfig.Connection.CreateStudentAccount(model);
+               
+                bool query = GlobalConfig.Connection.CreateStudentAccount(model);
+
+                if(query == false)
+                {
+                    MessageBox.Show("User with this data already exist");
+                }
                 
                 studentFirstNameTextBox.Text = "";
                 studentLastNameTextBox.Text = "";
@@ -226,7 +232,12 @@ namespace ExaminationSystemUI
                     teacherSchoolTextBox.Text,
                     teacherAcademicTitleTextBox.Text);
 
-                GlobalConfig.Connection.CreateTeacherAccount(model);
+                bool query = GlobalConfig.Connection.CreateTeacherAccount(model);
+
+                if (query == false)
+                {
+                    MessageBox.Show("User with this data already exist");
+                }
 
                 teacherFirstNameTextBox.Text = "";
                 teacherLastNameTextBox.Text = "";
@@ -305,7 +316,12 @@ namespace ExaminationSystemUI
                     adminUsernameTextBox.Text,
                     adminPasswordTextBox.Text);
 
-                GlobalConfig.Connection.CreateAdminAccount(model);
+                bool query = GlobalConfig.Connection.CreateAdminAccount(model);
+
+                if (query == false)
+                {
+                    MessageBox.Show("User with this data already exist");
+                }
 
                 adminFirstNameTextBox.Text = "";
                 adminLastNameTextBox.Text = "";

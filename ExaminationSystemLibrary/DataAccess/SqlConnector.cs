@@ -7,15 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 
-
 namespace ExaminationSystemLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
-        public StudentModel CreateStudentAccount(StudentModel model)
+        public bool CreateStudentAccount(StudentModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
+                bool query = false;
+
                 var p = new DynamicParameters();
                 p.Add("FirstName", model.FirstName);
                 p.Add("LastName", model.LastName);
@@ -26,15 +27,24 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("DegreeCourse", model.DegreeCourse);
                 p.Add("Role", model.Role);
 
-                connection.Execute("dbo.spStudent_Insert", p, commandType:CommandType.StoredProcedure);
+                int rows = connection.Execute("SELECT * from dbo.Student WHERE UserName = @UserName", model);
 
-                return model;
+                if (rows == 0)
+                {
+                    query = true;
+                    connection.Execute("dbo.spStudent_Insert", p, commandType: CommandType.StoredProcedure);
+                }
+                
+
+                return query;
             }
         }
-        public TeacherModel CreateTeacherAccount(TeacherModel model)
+        public bool CreateTeacherAccount(TeacherModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
+                bool query = false;
+
                 var p = new DynamicParameters();
                 p.Add("FirstName", model.FirstName);
                 p.Add("LastName", model.LastName);
@@ -45,15 +55,24 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("Role", model.Role);
 
 
-                connection.Execute("dbo.spTeacher_Insert", p, commandType: CommandType.StoredProcedure);
+                int rows = connection.Execute("SELECT * from dbo.Teacher WHERE UserName = @UserName", model);
 
-                return model;
+                if (rows == 0)
+                {
+                    query = true;
+                    connection.Execute("dbo.spTeacher_Insert", p, commandType: CommandType.StoredProcedure);
+                }
+
+
+                return query;
             }
         }
-        public AdminModel CreateAdminAccount(AdminModel model)
+        public bool CreateAdminAccount(AdminModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
+                bool query = false;
+
                 var p = new DynamicParameters();
                 p.Add("FirstName", model.FirstName);
                 p.Add("LastName", model.LastName);
@@ -61,10 +80,16 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("Password", model.Password);
                 p.Add("Role", model.Role);
 
+                int rows = connection.Execute("SELECT * from dbo.Admin WHERE UserName = @UserName", model);
 
-                connection.Execute("dbo.spAdmin_Insert", p, commandType: CommandType.StoredProcedure);
+                if (rows == 0)
+                {
+                    query = true;
+                    connection.Execute("dbo.spAdmin_Insert", p, commandType: CommandType.StoredProcedure);
+                }
 
-                return model;
+
+                return query;
             }
         }
         public QuestionModel CreateQuestion(QuestionModel model)
@@ -159,9 +184,10 @@ namespace ExaminationSystemLibrary.DataAccess
 
 
                 connection.Execute("dbo.spQuestion_Update", p, commandType: CommandType.StoredProcedure);
-
                 return model1;
             }
         }
+        
+        
     }
 }

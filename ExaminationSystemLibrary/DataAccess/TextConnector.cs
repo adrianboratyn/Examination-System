@@ -17,7 +17,7 @@ namespace ExaminationSystemLibrary.DataAccess
         private const string EXAMS_LIST_FILE = "ExamsList.csv";
 
 
-        public StudentModel CreateStudentAccount(StudentModel model)
+        public bool CreateStudentAccount(StudentModel model)
         {
             //extension method
             //load the text file and convert the text to List<StudentModel>
@@ -27,9 +27,9 @@ namespace ExaminationSystemLibrary.DataAccess
             //save the List<string> to the text file (overwritten text file)
             models.SaveToStudentFile(STUDENTS_ACCOUNT_FILE);
 
-            return model;
+            return true;
         }
-        public TeacherModel CreateTeacherAccount(TeacherModel model)
+        public bool CreateTeacherAccount(TeacherModel model)
         {
             //extension method
             //load the text file and convert the text to List<TeacherModel>
@@ -39,9 +39,9 @@ namespace ExaminationSystemLibrary.DataAccess
             //save the List<string> to the text file (overwritten text file)
             models.SaveToTeacherFile(TEACHERS_ACCOUNT_FILE);
 
-            return model;
+            return true;
         }
-        public AdminModel CreateAdminAccount(AdminModel model)
+        public bool CreateAdminAccount(AdminModel model)
         {
             //extension method
             //load the text file and convert the text to List<AdminModel>
@@ -51,7 +51,7 @@ namespace ExaminationSystemLibrary.DataAccess
             //save the List<string> to the text file (overwritten text file)
             models.SaveToAdminFile(ADMINS_ACCOUNT_FILE);
 
-            return model;
+            return true;
         }
         public QuestionModel CreateQuestion(QuestionModel model)
         {
