@@ -532,6 +532,7 @@
             this.createExamButton.TabIndex = 21;
             this.createExamButton.Text = "Create Exam";
             this.createExamButton.UseVisualStyleBackColor = true;
+            this.createExamButton.Click += new System.EventHandler(this.createExamButton_Click);
             // 
             // deleteSelectedButton
             // 
@@ -547,6 +548,7 @@
             this.deleteSelectedButton.TabIndex = 20;
             this.deleteSelectedButton.Text = "Delete selected";
             this.deleteSelectedButton.UseVisualStyleBackColor = true;
+            this.deleteSelectedButton.Click += new System.EventHandler(this.deleteSelectedButton_Click);
             // 
             // createdQuestionListBox
             // 
@@ -615,6 +617,7 @@
             this.addQuestionButton.TabIndex = 19;
             this.addQuestionButton.Text = "Add question";
             this.addQuestionButton.UseVisualStyleBackColor = true;
+            this.addQuestionButton.Click += new System.EventHandler(this.addQuestionButton_Click);
             // 
             // answerDTextBox
             // 
