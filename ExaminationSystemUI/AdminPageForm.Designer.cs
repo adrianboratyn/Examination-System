@@ -37,9 +37,10 @@
             this.adminDashboardPage = new System.Windows.Forms.TabPage();
             this.adminMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.adminEditExamPage = new System.Windows.Forms.TabPage();
+            this.editExamButton = new System.Windows.Forms.Button();
             this.deleteEditedButton = new System.Windows.Forms.Button();
             this.questionForEditListBox = new System.Windows.Forms.ListBox();
-            this.editExamButton = new System.Windows.Forms.Button();
+            this.saveChangesExamButton = new System.Windows.Forms.Button();
             this.editQuestionGroupBox = new System.Windows.Forms.GroupBox();
             this.editCorrectAnswerTextBox = new System.Windows.Forms.TextBox();
             this.editCorrectAnswerLabel = new System.Windows.Forms.Label();
@@ -210,9 +211,10 @@
             // 
             // adminEditExamPage
             // 
+            this.adminEditExamPage.Controls.Add(this.editExamButton);
             this.adminEditExamPage.Controls.Add(this.deleteEditedButton);
             this.adminEditExamPage.Controls.Add(this.questionForEditListBox);
-            this.adminEditExamPage.Controls.Add(this.editExamButton);
+            this.adminEditExamPage.Controls.Add(this.saveChangesExamButton);
             this.adminEditExamPage.Controls.Add(this.editQuestionGroupBox);
             this.adminEditExamPage.Controls.Add(this.editExamCodeTextBox);
             this.adminEditExamPage.Controls.Add(this.editExamCodeLabel);
@@ -228,6 +230,18 @@
             this.adminEditExamPage.Text = "Edit exam";
             this.adminEditExamPage.UseVisualStyleBackColor = true;
             // 
+            // editExamButton
+            // 
+            this.editExamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editExamButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.editExamButton.Location = new System.Drawing.Point(398, 6);
+            this.editExamButton.Name = "editExamButton";
+            this.editExamButton.Size = new System.Drawing.Size(58, 33);
+            this.editExamButton.TabIndex = 36;
+            this.editExamButton.Text = "Edit";
+            this.editExamButton.UseVisualStyleBackColor = true;
+            this.editExamButton.Click += new System.EventHandler(this.editExamButton_Click);
+            // 
             // deleteEditedButton
             // 
             this.deleteEditedButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
@@ -242,6 +256,7 @@
             this.deleteEditedButton.TabIndex = 24;
             this.deleteEditedButton.Text = "Delete selected";
             this.deleteEditedButton.UseVisualStyleBackColor = true;
+            this.deleteEditedButton.Click += new System.EventHandler(this.deleteEditedButton_Click);
             // 
             // questionForEditListBox
             // 
@@ -251,21 +266,23 @@
             this.questionForEditListBox.Name = "questionForEditListBox";
             this.questionForEditListBox.Size = new System.Drawing.Size(248, 379);
             this.questionForEditListBox.TabIndex = 23;
+            this.questionForEditListBox.Click += new System.EventHandler(this.questionForEditListBox_Click);
             // 
-            // editExamButton
+            // saveChangesExamButton
             // 
-            this.editExamButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.editExamButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSalmon;
-            this.editExamButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.editExamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editExamButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.editExamButton.ForeColor = System.Drawing.Color.Red;
-            this.editExamButton.Location = new System.Drawing.Point(498, 21);
-            this.editExamButton.Name = "editExamButton";
-            this.editExamButton.Size = new System.Drawing.Size(112, 71);
-            this.editExamButton.TabIndex = 22;
-            this.editExamButton.Text = "Edit Exam";
-            this.editExamButton.UseVisualStyleBackColor = true;
+            this.saveChangesExamButton.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.saveChangesExamButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSalmon;
+            this.saveChangesExamButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.saveChangesExamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveChangesExamButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.saveChangesExamButton.ForeColor = System.Drawing.Color.Red;
+            this.saveChangesExamButton.Location = new System.Drawing.Point(498, 21);
+            this.saveChangesExamButton.Name = "saveChangesExamButton";
+            this.saveChangesExamButton.Size = new System.Drawing.Size(112, 71);
+            this.saveChangesExamButton.TabIndex = 22;
+            this.saveChangesExamButton.Text = "Save Changes";
+            this.saveChangesExamButton.UseVisualStyleBackColor = true;
+            this.saveChangesExamButton.Click += new System.EventHandler(this.saveChangesExamButton_Click);
             // 
             // editQuestionGroupBox
             // 
@@ -325,6 +342,7 @@
             this.editQuestionButton.TabIndex = 19;
             this.editQuestionButton.Text = "Edit question";
             this.editQuestionButton.UseVisualStyleBackColor = true;
+            this.editQuestionButton.Click += new System.EventHandler(this.editQuestionButton_Click);
             // 
             // editAnswerDTextBox
             // 
@@ -487,6 +505,7 @@
             this.selectExamEditComboBox.Name = "selectExamEditComboBox";
             this.selectExamEditComboBox.Size = new System.Drawing.Size(263, 33);
             this.selectExamEditComboBox.TabIndex = 5;
+            this.selectExamEditComboBox.Click += new System.EventHandler(this.selectExamEditComboBox_Click);
             // 
             // selectExamEditLabel
             // 
@@ -1061,7 +1080,7 @@
         private System.Windows.Forms.Label selectExamEditLabel;
         private System.Windows.Forms.Button deleteEditedButton;
         private System.Windows.Forms.ListBox questionForEditListBox;
-        private System.Windows.Forms.Button editExamButton;
+        private System.Windows.Forms.Button saveChangesExamButton;
         private System.Windows.Forms.GroupBox editQuestionGroupBox;
         private System.Windows.Forms.TextBox editCorrectAnswerTextBox;
         private System.Windows.Forms.Label editCorrectAnswerLabel;
@@ -1096,5 +1115,6 @@
         private System.Windows.Forms.ListBox resultListBox;
         private System.Windows.Forms.ListBox adminStudentListBox;
         private System.Windows.Forms.MonthCalendar adminMonthCalendar;
+        private System.Windows.Forms.Button editExamButton;
     }
 }

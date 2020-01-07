@@ -266,5 +266,152 @@ namespace ExaminationSystemUI
 
             }
         }
+
+        //code for editing exam
+        private List<ExamModel> allExamList = GlobalConfig.Connection.GetExams();
+        private List<ExamModel> adminExams = new List<ExamModel>();
+
+        private List<QuestionModel> allQuestionsList = GlobalConfig.Connection.GetQuestions();
+        private List<QuestionModel> examQuestions = new List<QuestionModel>();
+
+        private void selectExamEditComboBox_Click(object sender, EventArgs e)
+        {
+            adminExams.Clear();
+            examQuestions.Clear();
+            foreach (ExamModel item in allExamList)
+            {
+                if (item.Creator == adminNameLabel.Text)
+                {
+                    adminExams.Add(item);
+                }
+            }
+            selectExamEditComboBox.DataSource = null;
+            selectExamEditComboBox.DataSource = adminExams;
+            selectExamEditComboBox.DisplayMember = "examName";
+        }
+
+        private ExamModel selectedExam = new ExamModel();
+
+        private void editExamButton_Click(object sender, EventArgs e)
+        {
+            examQuestions.Clear();
+            selectedExam = (ExamModel)selectExamEditComboBox.SelectedItem;
+            editExamNameTextBox.Text = selectedExam.Name;
+            editExamCodeTextBox.Text = selectedExam.AccessCode.ToString();
+
+            foreach (QuestionModel item in allQuestionsList)
+            {
+                if (item.ExamName == selectedExam.Name)
+                {
+                    examQuestions.Add(item);
+                    item.QuestionNumber = examQuestions.IndexOf(item) + 1;
+                }
+            }
+            questionForEditListBox.DataSource = null;
+            questionForEditListBox.DataSource = examQuestions;
+            questionForEditListBox.DisplayMember = "FullName";
+        }
+
+        private QuestionModel selectedQuestion = new QuestionModel();
+
+        private void questionForEditListBox_Click(object sender, EventArgs e)
+        {
+            selectedQuestion = (QuestionModel)questionForEditListBox.SelectedItem;
+
+            editQuestionTextBox.Text = selectedQuestion.Question;
+            editAnswerATextBox.Text = selectedQuestion.AnswerA;
+            editAnswerBTextBox.Text = selectedQuestion.AnswerB;
+            editAnswerCTextBox.Text = selectedQuestion.AnswerC;
+            editAnswerDTextBox.Text = selectedQuestion.AnswerD;
+            editCorrectAnswerTextBox.Text = selectedQuestion.CorrectAnswer;
+        }
+
+        private void deleteEditedButton_Click(object sender, EventArgs e)
+        {
+            QuestionModel model = (QuestionModel)questionForEditListBox.SelectedItem;
+
+            if (model != null)
+            {
+                examQuestions.Remove(model);
+                foreach (QuestionModel item in examQuestions)
+                {
+                    item.QuestionNumber = examQuestions.IndexOf(item) + 1;
+
+                }
+
+                questionForEditListBox.DataSource = null;
+                questionForEditListBox.DataSource = examQuestions;
+                questionForEditListBox.DisplayMember = "FullName";
+
+                editQuestionTextBox.Text = "";
+                editAnswerATextBox.Text = "";
+                editAnswerBTextBox.Text = "";
+                editAnswerCTextBox.Text = "";
+                editAnswerDTextBox.Text = "";
+                editCorrectAnswerTextBox.Text = "";
+            }
+        }
+
+        private void editQuestionButton_Click(object sender, EventArgs e)
+        {
+            foreach (QuestionModel item in examQuestions)
+            {
+                if (item == (QuestionModel)questionForEditListBox.SelectedItem)
+                {
+                    item.Question = editQuestionTextBox.Text;
+                    item.AnswerA = editAnswerATextBox.Text;
+                    item.AnswerB = editAnswerBTextBox.Text;
+                    item.AnswerC = editAnswerCTextBox.Text;
+                    item.AnswerD = editAnswerDTextBox.Text;
+                    item.CorrectAnswer = editCorrectAnswerTextBox.Text;
+                }
+            }
+            questionForEditListBox.DataSource = null;
+            questionForEditListBox.DataSource = examQuestions;
+            questionForEditListBox.DisplayMember = "FullName";
+
+            editQuestionTextBox.Text = "";
+            editAnswerATextBox.Text = "";
+            editAnswerBTextBox.Text = "";
+            editAnswerCTextBox.Text = "";
+            editAnswerDTextBox.Text = "";
+            editCorrectAnswerTextBox.Text = "";
+
+            selectedQuestion = null;
+        }
+
+        private void saveChangesExamButton_Click(object sender, EventArgs e)
+        {
+            ExamModel model = new ExamModel();
+            model.AccessCode = int.Parse(editExamCodeTextBox.Text);
+            model.Creator = adminNameLabel.Text;
+            model.Name = editExamNameTextBox.Text;
+            model.QuestionAmount = examQuestions.Count();
+
+            GlobalConfig.Connection.UpdateExam(model, selectedExam);
+
+            foreach (QuestionModel item in examQuestions)
+            {
+                item.ExamName = editExamNameTextBox.Text;
+                GlobalConfig.Connection.UpdateQuestion(item, selectedExam);
+            }
+
+            examQuestions.Clear();
+            allExamList = GlobalConfig.Connection.GetExams();
+
+            editExamCodeTextBox.Text = "";
+            editExamNameTextBox.Text = "";
+            editQuestionTextBox.Text = "";
+            editAnswerATextBox.Text = "";
+            editAnswerBTextBox.Text = "";
+            editAnswerCTextBox.Text = "";
+            editAnswerDTextBox.Text = "";
+            editCorrectAnswerTextBox.Text = "";
+
+            questionForEditListBox.DataSource = null;
+            questionForEditListBox.DataSource = examQuestions;
+
+            selectedExam = null;
+        }
     }
 }
