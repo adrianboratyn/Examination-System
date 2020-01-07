@@ -142,6 +142,7 @@
             this.teacherLogoutButton.TabIndex = 8;
             this.teacherLogoutButton.Text = "Log out";
             this.teacherLogoutButton.UseVisualStyleBackColor = true;
+            this.teacherLogoutButton.Click += new System.EventHandler(this.teacherLogoutButton_Click);
             // 
             // teacherNameLabel
             // 
@@ -1048,6 +1049,7 @@
             this.Margin = new System.Windows.Forms.Padding(7);
             this.Name = "TeacherPageForm";
             this.Text = "ExaminationSystem";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TeacherPageForm_FormClosing);
             this.teacherPagePanel.ResumeLayout(false);
             this.teacherPagePanel.PerformLayout();
             this.teacherMenuTabControl.ResumeLayout(false);

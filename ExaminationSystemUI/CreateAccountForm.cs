@@ -333,5 +333,17 @@ namespace ExaminationSystemUI
                 MessageBox.Show("Invalid information. Try again.");
             }
         }
+
+        private void backToLoginButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginPageForm form = new LoginPageForm();
+            form.Show();
+        }
+
+        private void CreateAccountForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

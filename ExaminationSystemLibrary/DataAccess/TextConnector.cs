@@ -29,6 +29,10 @@ namespace ExaminationSystemLibrary.DataAccess
 
             return true;
         }
+        public bool StudentLogin(string userName, string password)
+        {
+            return true;
+        }
         public bool CreateTeacherAccount(TeacherModel model)
         {
             //extension method
@@ -41,6 +45,10 @@ namespace ExaminationSystemLibrary.DataAccess
 
             return true;
         }
+        public bool TeacherLogin(string userName, string password)
+        {
+            return true;
+        }
         public bool CreateAdminAccount(AdminModel model)
         {
             //extension method
@@ -51,6 +59,10 @@ namespace ExaminationSystemLibrary.DataAccess
             //save the List<string> to the text file (overwritten text file)
             models.SaveToAdminFile(ADMINS_ACCOUNT_FILE);
 
+            return true;
+        }
+        public bool AdminLogin(string userName, string password)
+        {
             return true;
         }
         public QuestionModel CreateQuestion(QuestionModel model)

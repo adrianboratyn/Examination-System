@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ExaminationSystemUI
 {
     public partial class TeacherPageForm : Form
@@ -18,7 +19,12 @@ namespace ExaminationSystemUI
         {
             InitializeComponent();
         }
-
+        
+        public TeacherPageForm(string name)
+        {
+            InitializeComponent();
+            teacherNameLabel.Text = name;
+        }
         
         //code for creating new exam
         private bool ValidateTeacherAddQuestion()
@@ -404,6 +410,18 @@ namespace ExaminationSystemUI
             questionForEditListBox.DataSource = examQuestions;
 
             selectedExam = null;
-        }        
+        }
+
+        private void teacherLogoutButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginPageForm form = new LoginPageForm();
+            form.Show();
+        }
+
+        private void TeacherPageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

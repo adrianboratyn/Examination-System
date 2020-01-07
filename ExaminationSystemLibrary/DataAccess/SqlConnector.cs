@@ -42,6 +42,27 @@ namespace ExaminationSystemLibrary.DataAccess
                 return query;
             }
         }
+        public bool StudentLogin(string userName, string password)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                bool query = false;
+
+                var d = new DynamicParameters();
+                d.Add("UserName", userName);
+                d.Add("Password", password);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                connection.Execute("dbo.spStudent_Check", d, commandType: CommandType.StoredProcedure);
+
+                int rows = d.Get<int>("@UpdatedCounter");
+                if (rows == 1)
+                {
+                    query = true;
+                }
+                return query;
+            }
+        }
         public bool CreateTeacherAccount(TeacherModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
@@ -74,6 +95,27 @@ namespace ExaminationSystemLibrary.DataAccess
                 return query;
             }
         }
+        public bool TeacherLogin(string userName, string password)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                bool query = false;
+
+                var d = new DynamicParameters();
+                d.Add("UserName", userName);
+                d.Add("Password", password);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                connection.Execute("dbo.spTeacher_Check", d, commandType: CommandType.StoredProcedure);
+
+                int rows = d.Get<int>("@UpdatedCounter");
+                if (rows == 1)
+                {
+                    query = true;
+                }
+                return query;
+            }
+        }
         public bool CreateAdminAccount(AdminModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
@@ -101,6 +143,27 @@ namespace ExaminationSystemLibrary.DataAccess
                 }
 
 
+                return query;
+            }
+        }
+        public bool AdminLogin(string userName, string password)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                bool query = false;
+
+                var d = new DynamicParameters();
+                d.Add("UserName", userName);
+                d.Add("Password", password);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                connection.Execute("dbo.spAdmin_Check", d, commandType: CommandType.StoredProcedure);
+
+                int rows = d.Get<int>("@UpdatedCounter");
+                if (rows == 1)
+                {
+                    query = true;
+                }
                 return query;
             }
         }

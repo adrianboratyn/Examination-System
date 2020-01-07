@@ -35,6 +35,7 @@
             this.pageNameLabel = new System.Windows.Forms.Label();
             this.studentMenuTabControl = new System.Windows.Forms.TabControl();
             this.studentDashboardPage = new System.Windows.Forms.TabPage();
+            this.studentMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.studentExamListPage = new System.Windows.Forms.TabPage();
             this.signUpButton = new System.Windows.Forms.Button();
             this.allExamListBox = new System.Windows.Forms.ListBox();
@@ -78,7 +79,6 @@
             this.studentEditLastNameLabel = new System.Windows.Forms.Label();
             this.studentEditFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.studentEditFirstNameLabel = new System.Windows.Forms.Label();
-            this.studentMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.adminPagePanel.SuspendLayout();
             this.studentMenuTabControl.SuspendLayout();
             this.studentDashboardPage.SuspendLayout();
@@ -115,6 +115,7 @@
             this.studentLogoutButton.TabIndex = 8;
             this.studentLogoutButton.Text = "Log out";
             this.studentLogoutButton.UseVisualStyleBackColor = true;
+            this.studentLogoutButton.Click += new System.EventHandler(this.studentLogoutButton_Click);
             // 
             // studentNameLabel
             // 
@@ -174,6 +175,12 @@
             this.studentDashboardPage.TabIndex = 1;
             this.studentDashboardPage.Text = "Dashboard";
             this.studentDashboardPage.UseVisualStyleBackColor = true;
+            // 
+            // studentMonthCalendar
+            // 
+            this.studentMonthCalendar.Location = new System.Drawing.Point(352, 12);
+            this.studentMonthCalendar.Name = "studentMonthCalendar";
+            this.studentMonthCalendar.TabIndex = 0;
             // 
             // studentExamListPage
             // 
@@ -705,12 +712,6 @@
             this.studentEditFirstNameLabel.TabIndex = 40;
             this.studentEditFirstNameLabel.Text = "First Name";
             // 
-            // studentMonthCalendar
-            // 
-            this.studentMonthCalendar.Location = new System.Drawing.Point(352, 12);
-            this.studentMonthCalendar.Name = "studentMonthCalendar";
-            this.studentMonthCalendar.TabIndex = 0;
-            // 
             // StudentPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
@@ -724,6 +725,7 @@
             this.Margin = new System.Windows.Forms.Padding(7);
             this.Name = "StudentPageForm";
             this.Text = "Examination System";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentPageForm_FormClosing);
             this.adminPagePanel.ResumeLayout(false);
             this.adminPagePanel.PerformLayout();
             this.studentMenuTabControl.ResumeLayout(false);

@@ -141,6 +141,7 @@
             this.loginButton.TabIndex = 7;
             this.loginButton.Text = "Log in";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // usernameLoginTextBox
             // 
@@ -163,6 +164,7 @@
             this.passwordLoginTextBox.Size = new System.Drawing.Size(100, 26);
             this.passwordLoginTextBox.TabIndex = 9;
             this.passwordLoginTextBox.Text = "Password";
+            this.passwordLoginTextBox.UseSystemPasswordChar = true;
             // 
             // createAccountLinkLabel
             // 
@@ -174,6 +176,7 @@
             this.createAccountLinkLabel.TabIndex = 10;
             this.createAccountLinkLabel.TabStop = true;
             this.createAccountLinkLabel.Text = "I don\'t have account";
+            this.createAccountLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.createAccountLinkLabel_LinkClicked);
             // 
             // LoginPageForm
             // 
@@ -198,6 +201,7 @@
             this.MinimumSize = new System.Drawing.Size(410, 483);
             this.Name = "LoginPageForm";
             this.Text = "Examination system";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginPageForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

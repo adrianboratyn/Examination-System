@@ -35,6 +35,7 @@
             this.pageNameLabel = new System.Windows.Forms.Label();
             this.adminMenuTabControl = new System.Windows.Forms.TabControl();
             this.adminDashboardPage = new System.Windows.Forms.TabPage();
+            this.adminMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.adminEditExamPage = new System.Windows.Forms.TabPage();
             this.deleteEditedButton = new System.Windows.Forms.Button();
             this.questionForEditListBox = new System.Windows.Forms.ListBox();
@@ -100,7 +101,6 @@
             this.selectExamResultLabel = new System.Windows.Forms.Label();
             this.adminStudentListPage = new System.Windows.Forms.TabPage();
             this.adminStudentListBox = new System.Windows.Forms.ListBox();
-            this.adminMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.adminPagePanel.SuspendLayout();
             this.adminMenuTabControl.SuspendLayout();
             this.adminDashboardPage.SuspendLayout();
@@ -138,6 +138,7 @@
             this.adminLogoutButton.TabIndex = 8;
             this.adminLogoutButton.Text = "Log out";
             this.adminLogoutButton.UseVisualStyleBackColor = true;
+            this.adminLogoutButton.Click += new System.EventHandler(this.adminLogoutButton_Click);
             // 
             // adminNameLabel
             // 
@@ -199,6 +200,13 @@
             this.adminDashboardPage.Size = new System.Drawing.Size(631, 556);
             this.adminDashboardPage.TabIndex = 0;
             this.adminDashboardPage.Text = "Dashboard";
+            // 
+            // adminMonthCalendar
+            // 
+            this.adminMonthCalendar.ForeColor = System.Drawing.Color.Red;
+            this.adminMonthCalendar.Location = new System.Drawing.Point(348, 12);
+            this.adminMonthCalendar.Name = "adminMonthCalendar";
+            this.adminMonthCalendar.TabIndex = 1;
             // 
             // adminEditExamPage
             // 
@@ -975,13 +983,6 @@
             this.adminStudentListBox.Size = new System.Drawing.Size(379, 429);
             this.adminStudentListBox.TabIndex = 36;
             // 
-            // adminMonthCalendar
-            // 
-            this.adminMonthCalendar.ForeColor = System.Drawing.Color.Red;
-            this.adminMonthCalendar.Location = new System.Drawing.Point(348, 12);
-            this.adminMonthCalendar.Name = "adminMonthCalendar";
-            this.adminMonthCalendar.TabIndex = 1;
-            // 
             // AdminPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
@@ -995,6 +996,7 @@
             this.Margin = new System.Windows.Forms.Padding(7);
             this.Name = "AdminPageForm";
             this.Text = "Examination System";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminPageForm_FormClosing);
             this.adminPagePanel.ResumeLayout(false);
             this.adminPagePanel.PerformLayout();
             this.adminMenuTabControl.ResumeLayout(false);

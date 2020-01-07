@@ -20,7 +20,7 @@ namespace ExaminationSystemUI
             // Initialize the database connection
             ExaminationSystemLibrary.GlobalConfig.InitializeConnections("sql");
 
-            Application.Run(new TeacherPageForm());
+            Application.Run(new LoginPageForm());
         }
     }
 }

@@ -17,6 +17,22 @@ namespace ExaminationSystemUI
             InitializeComponent();
         }
 
-       
+        public AdminPageForm(string name)
+        {
+            InitializeComponent();
+            adminNameLabel.Text = name;
+        }
+
+        private void adminLogoutButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginPageForm form = new LoginPageForm();
+            form.Show();
+        }
+
+        private void AdminPageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -10,8 +10,11 @@ namespace ExaminationSystemLibrary.DataAccess
     public interface IDataConnection
     {
         bool CreateStudentAccount(StudentModel model);
+        bool StudentLogin(string userName, string password);
         bool CreateTeacherAccount(TeacherModel model);
+        bool TeacherLogin(string userName, string password);
         bool CreateAdminAccount(AdminModel model);
+        bool AdminLogin(string userName, string password);
         QuestionModel CreateQuestion(QuestionModel model);
         ExamModel CreateExam(ExamModel model);
         List<ExamModel> GetExams();

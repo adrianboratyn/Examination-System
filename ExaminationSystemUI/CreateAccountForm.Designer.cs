@@ -693,6 +693,7 @@
             this.backToLoginButton.TabIndex = 17;
             this.backToLoginButton.Text = "Back to login panel";
             this.backToLoginButton.UseVisualStyleBackColor = true;
+            this.backToLoginButton.Click += new System.EventHandler(this.backToLoginButton_Click);
             // 
             // CreateAccountForm
             // 
@@ -716,6 +717,7 @@
             this.MinimumSize = new System.Drawing.Size(595, 460);
             this.Name = "CreateAccountForm";
             this.Text = "Examination System";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateAccountForm_FormClosing);
             this.Load += new System.EventHandler(this.CreateAccountForm_Load);
             this.teacherAccountGroupBox.ResumeLayout(false);
             this.teacherAccountGroupBox.PerformLayout();
