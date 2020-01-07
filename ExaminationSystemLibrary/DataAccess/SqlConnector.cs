@@ -27,15 +27,18 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("DegreeCourse", model.DegreeCourse);
                 p.Add("Role", model.Role);
 
-                int rows = connection.Execute("SELECT * from dbo.Student WHERE UserName = @UserName", model);
+                var d = new DynamicParameters();
+                d.Add("UserName", model.UserName);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
+                connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
+
+                int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 0)
                 {
                     query = true;
                     connection.Execute("dbo.spStudent_Insert", p, commandType: CommandType.StoredProcedure);
                 }
-                
-
                 return query;
             }
         }
@@ -54,9 +57,13 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("School", model.School);
                 p.Add("Role", model.Role);
 
+                var d = new DynamicParameters();
+                d.Add("UserName", model.UserName);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-                int rows = connection.Execute("SELECT * from dbo.Teacher WHERE UserName = @UserName", model);
+                connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
 
+                int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 0)
                 {
                     query = true;
@@ -80,8 +87,13 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("Password", model.Password);
                 p.Add("Role", model.Role);
 
-                int rows = connection.Execute("SELECT * from dbo.Admin WHERE UserName = @UserName", model);
+                var d = new DynamicParameters();
+                d.Add("UserName", model.UserName);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
+                connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
+
+                int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 0)
                 {
                     query = true;
@@ -187,6 +199,8 @@ namespace ExaminationSystemLibrary.DataAccess
                 return model1;
             }
         }
+
+        
         
         
     }
