@@ -835,6 +835,7 @@
             this.adminEditAccountButton.TabIndex = 58;
             this.adminEditAccountButton.Text = "Edit";
             this.adminEditAccountButton.UseVisualStyleBackColor = true;
+            this.adminEditAccountButton.Click += new System.EventHandler(this.adminEditAccountButton_Click);
             // 
             // adminEditPasswordTextBox
             // 
@@ -866,7 +867,6 @@
             this.adminEditUsernameTextBox.Name = "adminEditUsernameTextBox";
             this.adminEditUsernameTextBox.Size = new System.Drawing.Size(120, 33);
             this.adminEditUsernameTextBox.TabIndex = 55;
-            this.adminEditUsernameTextBox.Text = "Username";
             // 
             // adminEditUsernameLabel
             // 
@@ -888,7 +888,6 @@
             this.adminEditLastNameTextBox.Name = "adminEditLastNameTextBox";
             this.adminEditLastNameTextBox.Size = new System.Drawing.Size(120, 33);
             this.adminEditLastNameTextBox.TabIndex = 53;
-            this.adminEditLastNameTextBox.Text = "Last Name";
             // 
             // adminEditLastNameLabel
             // 
@@ -910,7 +909,6 @@
             this.adminEditFirstNameTextBox.Name = "adminEditFirstNameTextBox";
             this.adminEditFirstNameTextBox.Size = new System.Drawing.Size(120, 33);
             this.adminEditFirstNameTextBox.TabIndex = 51;
-            this.adminEditFirstNameTextBox.Text = "First Name";
             // 
             // adminEditFirstNameLabel
             // 

@@ -63,6 +63,43 @@ namespace ExaminationSystemLibrary.DataAccess
                 return query;
             }
         }
+        public bool EditStudentAccount(StudentModel model, string oldUserName)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                bool query = false;
+
+                var p = new DynamicParameters();
+                p.Add("FirstName", model.FirstName);
+                p.Add("LastName", model.LastName);
+                p.Add("UserName", model.UserName);
+                p.Add("Password", model.Password);
+                p.Add("Age", model.Age);
+                p.Add("School", model.School);
+                p.Add("DegreeCourse", model.DegreeCourse);
+                p.Add("OldUserName", oldUserName);
+
+                var b = new DynamicParameters();
+                b.Add("UserName", model.UserName);
+                b.Add("OldUserName", oldUserName);
+
+                var d = new DynamicParameters();
+                d.Add("UserName", model.UserName);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
+
+                int rows = d.Get<int>("@UpdatedCounter");
+                if (rows == 0 || oldUserName == model.UserName)
+                {
+                    connection.Execute("dbo.spUser_Update", b, commandType: CommandType.StoredProcedure);
+                    connection.Execute("dbo.spStudent_Update", p, commandType: CommandType.StoredProcedure);
+                    query = true;
+                }
+
+                return query;
+            }
+        }
         public bool CreateTeacherAccount(TeacherModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
@@ -116,6 +153,42 @@ namespace ExaminationSystemLibrary.DataAccess
                 return query;
             }
         }
+        public bool EditTeacherAccount(TeacherModel model, string oldUserName)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                bool query = false;
+
+                var p = new DynamicParameters();
+                p.Add("FirstName", model.FirstName);
+                p.Add("LastName", model.LastName);
+                p.Add("UserName", model.UserName);
+                p.Add("Password", model.Password);
+                p.Add("AcademicTitle", model.AcademicTitle);
+                p.Add("School", model.School);
+                p.Add("OldUserName", oldUserName);
+
+                var b = new DynamicParameters();
+                b.Add("UserName", model.UserName);
+                b.Add("OldUserName", oldUserName);
+
+                var d = new DynamicParameters();
+                d.Add("UserName", model.UserName);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
+
+                int rows = d.Get<int>("@UpdatedCounter");
+                if (rows == 0 || oldUserName == model.UserName)
+                {
+                    connection.Execute("dbo.spUser_Update", b, commandType: CommandType.StoredProcedure);
+                    connection.Execute("dbo.spTeacher_Update", p, commandType: CommandType.StoredProcedure);
+                    query = true;
+                }
+
+                return query;
+            }
+        }
         public bool CreateAdminAccount(AdminModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
@@ -164,6 +237,40 @@ namespace ExaminationSystemLibrary.DataAccess
                 {
                     query = true;
                 }
+                return query;
+            }
+        }
+        public bool EditAdminAccount(AdminModel model, string oldUserName)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                bool query = false;
+
+                var p = new DynamicParameters();
+                p.Add("FirstName", model.FirstName);
+                p.Add("LastName", model.LastName);
+                p.Add("UserName", model.UserName);
+                p.Add("Password", model.Password);
+                p.Add("OldUserName", oldUserName);
+
+                var b = new DynamicParameters();
+                b.Add("UserName", model.UserName);
+                b.Add("OldUserName", oldUserName);
+
+                var d = new DynamicParameters();
+                d.Add("UserName", model.UserName);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
+
+                int rows = d.Get<int>("@UpdatedCounter");
+                if (rows == 0 || oldUserName == model.UserName)
+                {
+                    connection.Execute("dbo.spUser_Update", b, commandType: CommandType.StoredProcedure);
+                    connection.Execute("dbo.spAdmin_Update", p, commandType: CommandType.StoredProcedure);
+                    query = true;
+                }
+                
                 return query;
             }
         }

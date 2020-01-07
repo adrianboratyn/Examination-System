@@ -33,6 +33,10 @@ namespace ExaminationSystemLibrary.DataAccess
         {
             return true;
         }
+        public bool EditStudentAccount(StudentModel model, string oldUserName)
+        {
+            return true;
+        }
         public bool CreateTeacherAccount(TeacherModel model)
         {
             //extension method
@@ -49,6 +53,10 @@ namespace ExaminationSystemLibrary.DataAccess
         {
             return true;
         }
+        public bool EditTeacherAccount(TeacherModel model, string oldUserName)
+        {
+            return true;
+        }
         public bool CreateAdminAccount(AdminModel model)
         {
             //extension method
@@ -62,6 +70,10 @@ namespace ExaminationSystemLibrary.DataAccess
             return true;
         }
         public bool AdminLogin(string userName, string password)
+        {
+            return true;
+        }
+        public bool EditAdminAccount(AdminModel model, string oldUserName)
         {
             return true;
         }

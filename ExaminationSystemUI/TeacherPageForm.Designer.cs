@@ -843,6 +843,7 @@
             this.teacherEditAccountButton.TabIndex = 52;
             this.teacherEditAccountButton.Text = "Edit";
             this.teacherEditAccountButton.UseVisualStyleBackColor = true;
+            this.teacherEditAccountButton.Click += new System.EventHandler(this.teacherEditAccountButton_Click);
             // 
             // teacherEditPasswordTextBox
             // 
@@ -874,7 +875,6 @@
             this.teacherEditSchoolTextBox.Name = "teacherEditSchoolTextBox";
             this.teacherEditSchoolTextBox.Size = new System.Drawing.Size(157, 33);
             this.teacherEditSchoolTextBox.TabIndex = 49;
-            this.teacherEditSchoolTextBox.Text = "School";
             // 
             // teacherEditSchoolLabel
             // 
@@ -896,7 +896,6 @@
             this.teacherEditAcademicTitleTextBox.Name = "teacherEditAcademicTitleTextBox";
             this.teacherEditAcademicTitleTextBox.Size = new System.Drawing.Size(157, 33);
             this.teacherEditAcademicTitleTextBox.TabIndex = 47;
-            this.teacherEditAcademicTitleTextBox.Text = "Academic Title";
             // 
             // teacherEditAcademicTitleLabel
             // 
@@ -918,7 +917,6 @@
             this.teacherEditUsernameTextBox.Name = "teacherEditUsernameTextBox";
             this.teacherEditUsernameTextBox.Size = new System.Drawing.Size(157, 33);
             this.teacherEditUsernameTextBox.TabIndex = 45;
-            this.teacherEditUsernameTextBox.Text = "Username";
             // 
             // teacherEditUsernameLabel
             // 
@@ -940,7 +938,6 @@
             this.teacherEditLastNameTextBox.Name = "teacherEditLastNameTextBox";
             this.teacherEditLastNameTextBox.Size = new System.Drawing.Size(157, 33);
             this.teacherEditLastNameTextBox.TabIndex = 43;
-            this.teacherEditLastNameTextBox.Text = "Last Name";
             // 
             // teacherEditLastNameLabel
             // 
@@ -962,7 +959,6 @@
             this.teacherEditFirstNameTextBox.Name = "teacherEditFirstNameTextBox";
             this.teacherEditFirstNameTextBox.Size = new System.Drawing.Size(157, 33);
             this.teacherEditFirstNameTextBox.TabIndex = 41;
-            this.teacherEditFirstNameTextBox.Text = "First Name";
             // 
             // teacherEditFirstNameLabel
             // 

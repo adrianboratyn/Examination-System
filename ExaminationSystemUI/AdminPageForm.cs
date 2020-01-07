@@ -413,5 +413,54 @@ namespace ExaminationSystemUI
 
             selectedExam = null;
         }
+
+        //code for editing profile
+
+        private bool ValidateAdminEditProfile()
+        {
+            bool output = true;
+
+            if (adminEditFirstNameTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+
+            if (adminEditLastNameTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+
+            if (adminEditUsernameTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+
+            if (adminEditPasswordTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+            return output;
+        }
+        private void adminEditAccountButton_Click(object sender, EventArgs e)
+        {
+            if(ValidateAdminEditProfile() == true)
+            {
+                AdminModel model = new AdminModel();
+                model.FirstName = adminEditFirstNameTextBox.Text;
+                model.LastName = adminEditLastNameTextBox.Text;
+                model.UserName = adminEditUsernameTextBox.Text;
+                model.Password = adminEditPasswordTextBox.Text;
+
+                if(GlobalConfig.Connection.EditAdminAccount(model, adminNameLabel.Text) == true)
+                {
+                    MessageBox.Show("Update Successful");
+                    adminNameLabel.Text = model.UserName;
+                }
+                else
+                {
+                    MessageBox.Show("User with this username already exist");
+                }
+            }
+        }
     }
 }

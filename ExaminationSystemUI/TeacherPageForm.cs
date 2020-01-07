@@ -159,10 +159,6 @@ namespace ExaminationSystemUI
             }
         }
 
-
-
-
-
         private bool ValidateTeacherAddExam()
         {
             bool output = true;
@@ -422,6 +418,66 @@ namespace ExaminationSystemUI
         private void TeacherPageForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+
+        //code for editing profile
+        private bool ValidateTeacherEditProfile()
+        {
+            bool output = true;
+
+            if (teacherEditFirstNameTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+
+            if (teacherEditLastNameTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+
+            if (teacherEditUsernameTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+
+            if (teacherEditPasswordTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+            if (teacherEditAcademicTitleTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+            if (teacherEditSchoolTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+            return output;
+        }
+        private void teacherEditAccountButton_Click(object sender, EventArgs e)
+        {
+            if (ValidateTeacherEditProfile() == true)
+            {
+                TeacherModel model = new TeacherModel();
+                model.FirstName = teacherEditFirstNameTextBox.Text;
+                model.LastName = teacherEditLastNameTextBox.Text;
+                model.UserName = teacherEditUsernameTextBox.Text;
+                model.Password = teacherEditPasswordTextBox.Text;
+                model.AcademicTitle = teacherEditAcademicTitleTextBox.Text;
+                model.School = teacherEditSchoolTextBox.Text;
+
+
+                if (GlobalConfig.Connection.EditTeacherAccount(model, teacherNameLabel.Text) == true)
+                {
+                    MessageBox.Show("Update Successful");
+                    teacherNameLabel.Text = model.UserName;
+                }
+                else
+                {
+                    MessageBox.Show("User with this username already exist");
+                }
+            }
         }
     }
 }

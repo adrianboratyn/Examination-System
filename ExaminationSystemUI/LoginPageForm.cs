@@ -43,7 +43,7 @@ namespace ExaminationSystemUI
                     }
                     else
                     {
-                        MessageBox.Show("Login false");
+                        MessageBox.Show("Login failed");
                     }
                 }
                 else if (teacherRadioButton.Checked == true)
@@ -55,6 +55,10 @@ namespace ExaminationSystemUI
                         TeacherPageForm form = new TeacherPageForm(usernameLoginTextBox.Text);
                         form.Show();
                     }
+                    else
+                    {
+                        MessageBox.Show("Login failed");
+                    }
                 }
                 else if (adminRadioButton.Checked == true)
                 {
@@ -64,6 +68,10 @@ namespace ExaminationSystemUI
                         this.Hide();
                         AdminPageForm form = new AdminPageForm(usernameLoginTextBox.Text);
                         form.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Login failed");
                     }
                 }
                 else
