@@ -100,5 +100,172 @@ namespace ExaminationSystemUI
                 }
             }
         }
+
+        private List<ExamModel> allExamList = GlobalConfig.Connection.GetExams();
+        private void studentMenuTabControl_Click(object sender, EventArgs e)
+        {
+            allExamListBox.DataSource = allExamList;
+            allExamListBox.DisplayMember = "examAndCreator";
+        }
+
+        private List<ExamModel> signUpExamList = new List<ExamModel>();
+        private void signUpButton_Click(object sender, EventArgs e)
+        {
+            if(signUpExamList.Count() == 0)
+            {
+                signUpExamList.Add((ExamModel)allExamListBox.SelectedItem);
+                selectedExamListBox.DataSource = null;
+                selectedExamListBox.DataSource = signUpExamList;
+                selectedExamListBox.DisplayMember = "examAndCode";
+            }
+            foreach (ExamModel model in signUpExamList)
+            {
+                if(model != (ExamModel)allExamListBox.SelectedItem)
+                {
+                    signUpExamList.Add((ExamModel)allExamListBox.SelectedItem);
+                    selectedExamListBox.DataSource = null;
+                    selectedExamListBox.DataSource = signUpExamList;
+                    selectedExamListBox.DisplayMember = "examAndCode";
+                }
+            }
+        }
+
+        private void selectExamComboBox_Click(object sender, EventArgs e)
+        {
+            selectExamComboBox.DataSource = allExamList;
+            selectExamComboBox.DisplayMember = "examName";
+        }
+
+        private List<QuestionModel> allQuestionsList = GlobalConfig.Connection.GetQuestions();
+        private List<QuestionModel> examQuestions = new List<QuestionModel>();
+        private ExamModel selectedExam = new ExamModel();
+        private char[] answers;
+
+        private void takeExamButton_Click(object sender, EventArgs e)
+        {
+            examQuestions.Clear();
+            if (accessCodeTextBox.Text.Length == 0)
+            {
+                MessageBox.Show("Provide code");
+            }
+            selectedExam = (ExamModel)selectExamComboBox.SelectedItem;
+            int accessCode = 0;
+            bool accessCodeIsValid = int.TryParse(accessCodeTextBox.Text, out accessCode);
+            if (accessCodeIsValid == false)
+            {
+                MessageBox.Show("Code must be a number");
+            }
+            if (selectedExam.AccessCode == accessCode)
+            {
+                foreach (QuestionModel item in allQuestionsList)
+                {
+                    if (item.ExamName == selectedExam.Name)
+                    {
+                        examQuestions.Add(item);
+                        item.QuestionNumber = examQuestions.IndexOf(item) + 1;
+                    }
+                }
+                answers = new char[examQuestions.Count()];
+                for(int i=0; i< answers.Length; i++)
+                {
+                    answers[i] = 'f';
+                }
+
+                examQuestionListBox.DataSource = null;
+                examQuestionListBox.DataSource = examQuestions;
+                examQuestionListBox.DisplayMember = "FullName";
+            }
+        }
+
+        private QuestionModel selectedQuestion = new QuestionModel();
+        private void examQuestionListBox_Click(object sender, EventArgs e)
+        {
+            selectedQuestion = (QuestionModel)examQuestionListBox.SelectedItem;
+
+            questionNameTextBox.Text = selectedQuestion.Question;
+            answerATextBox.Text = selectedQuestion.AnswerA;
+            answerBTextBox.Text = selectedQuestion.AnswerB;
+            answerCTextBox.Text = selectedQuestion.AnswerC;
+            answerDTextBox.Text = selectedQuestion.AnswerD;
+        }
+       
+        private void nextQuestionButton_Click(object sender, EventArgs e)
+        {
+            if (answerARadioButton.Checked == true)
+            {
+                answers[examQuestions.IndexOf(selectedQuestion)] = 'a';
+                answerARadioButton.Checked = false;
+            }
+            if (answerBRadioButton.Checked == true)
+            {
+                answers[examQuestions.IndexOf(selectedQuestion)] = 'b';
+                answerBRadioButton.Checked = false;
+
+            }
+            if (answerCRadioButton.Checked == true)
+            {
+                answers[examQuestions.IndexOf(selectedQuestion)] = 'c';
+                answerCRadioButton.Checked = false;
+
+            }
+            if (answerDRadioButton.Checked == true)
+            {
+                answers[examQuestions.IndexOf(selectedQuestion)] = 'd';
+                answerDRadioButton.Checked = false;
+            }
+
+            questionNameTextBox.Text = "";
+            answerATextBox.Text = "";
+            answerBTextBox.Text = "";
+            answerCTextBox.Text = "";
+            answerDTextBox.Text = "";
+        }
+        private void finishExamButton_Click(object sender, EventArgs e)
+        {
+            int score = 0;
+            bool allAnswers = true;
+            foreach (QuestionModel model in examQuestions)
+            {
+                char answer = model.CorrectAnswer[0];
+                if (answers[examQuestions.IndexOf(model)] == 'f')
+                {
+                    MessageBox.Show("You didn't answer all questions");
+                    allAnswers = false;
+                    
+                }
+                else if (answer == answers[examQuestions.IndexOf(model)])
+                {
+                    score++;
+                }
+            }
+            if(allAnswers)
+            {
+                MessageBox.Show("Your score: " + score.ToString() + "/" + examQuestions.Count()) ;
+            }
+
+            ResultModel result = new ResultModel();
+            result.ExamCreator = selectedExam.Creator;
+            result.ExamName = selectedExam.Name;
+            result.StudentUserName = studentNameLabel.Text;
+            result.Score = score;
+            GlobalConfig.Connection.CreateResult(result);
+
+            examQuestions.Clear();
+
+            questionNameTextBox.Text = "";
+            answerATextBox.Text = "";
+            answerBTextBox.Text = "";
+            answerCTextBox.Text = "";
+            answerDTextBox.Text = "";
+
+            examQuestionListBox.DataSource = null;
+            examQuestionListBox.DataSource = examQuestions;
+
+            selectedExam = null;
+            selectedQuestion = null;
+
+        }
+
+        
     }
 }

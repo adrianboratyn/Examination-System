@@ -24,5 +24,6 @@ namespace ExaminationSystemLibrary.DataAccess
         List<QuestionModel> GetQuestions();
         ExamModel UpdateExam(ExamModel model1, ExamModel model2);
         QuestionModel UpdateQuestion(QuestionModel model1, ExamModel model2);
+        ResultModel CreateResult(ResultModel model);
     }
 }

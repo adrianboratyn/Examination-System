@@ -369,9 +369,40 @@ namespace ExaminationSystemLibrary.DataAccess
                 return model1;
             }
         }
+        public ResultModel CreateResult(ResultModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                var p = new DynamicParameters();
+                p.Add("ExamName", model.ExamName);
+                p.Add("StudentUserName", model.StudentUserName);
+                p.Add("Score", model.Score);
 
-        
-        
-        
+
+                connection.Execute("dbo.spResult_Insert", p, commandType: CommandType.StoredProcedure);
+
+                var d = new DynamicParameters();
+                d.Add("ExamName", model.ExamName);
+                d.Add("StudentUserName", model.StudentUserName);
+                d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+                connection.Execute("dbo.spStudentCourses_Check", d, commandType: CommandType.StoredProcedure);
+
+                int rows = d.Get<int>("@UpdatedCounter");
+
+                var b = new DynamicParameters();
+                b.Add("ExamName", model.ExamName);
+                b.Add("ExamCreator", model.ExamCreator);
+                b.Add("StudentUserName", model.StudentUserName);
+                if (rows == 0)
+                {
+                    connection.Execute("dbo.spStudentCourses_Insert", b, commandType: CommandType.StoredProcedure);
+                }
+
+                return model;
+            }
+        }
+
+
+
     }
 }

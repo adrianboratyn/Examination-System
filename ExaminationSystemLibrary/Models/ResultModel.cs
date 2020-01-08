@@ -11,22 +11,15 @@ namespace ExaminationSystemLibrary.Models
     /// </summary>
     public class ResultModel
     {
-        /// <summary>
-        /// A day when exam was taken.
-        /// </summary>
-        public DateTime DayOfExam { get; set; }
+        public string ExamCreator { get; set; }
         /// <summary>
         /// A student who took the exam.
         /// </summary>
-        public StudentModel Student { get; set; }
+        public string StudentUserName { get; set; }
         /// <summary>
         /// An exam which was taken.
         /// </summary>
-        public ExamModel Exam { get; set; }
-        /// <summary>
-        /// Duration of exam.
-        /// </summary>
-        public DateTime Duration { get; set; }
+        public string ExamName { get; set; }
         /// <summary>
         /// Student's score (amount of points).
         /// </summary>

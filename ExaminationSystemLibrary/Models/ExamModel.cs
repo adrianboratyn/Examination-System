@@ -36,5 +36,19 @@ namespace ExaminationSystemLibrary.Models
                 return $"{Name}";
             }
         }
+        public string examAndCreator
+        {
+            get
+            {
+                return $"{Name   } { "        Creator:  " } {   Creator}";
+            }
+        }
+        public string examAndCode
+        {
+            get
+            {
+                return $"{Name } {"          Access Code:  "}{ AccessCode}";
+            }
+        }
     }
 }

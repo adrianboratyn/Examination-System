@@ -35,6 +35,7 @@
             this.pageNameLabel = new System.Windows.Forms.Label();
             this.studentMenuTabControl = new System.Windows.Forms.TabControl();
             this.studentDashboardPage = new System.Windows.Forms.TabPage();
+            this.selectedExamListBox = new System.Windows.Forms.ListBox();
             this.studentMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.studentExamListPage = new System.Windows.Forms.TabPage();
             this.signUpButton = new System.Windows.Forms.Button();
@@ -164,9 +165,11 @@
             this.studentMenuTabControl.Size = new System.Drawing.Size(643, 601);
             this.studentMenuTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.studentMenuTabControl.TabIndex = 3;
+            this.studentMenuTabControl.Click += new System.EventHandler(this.studentMenuTabControl_Click);
             // 
             // studentDashboardPage
             // 
+            this.studentDashboardPage.Controls.Add(this.selectedExamListBox);
             this.studentDashboardPage.Controls.Add(this.studentMonthCalendar);
             this.studentDashboardPage.Location = new System.Drawing.Point(4, 41);
             this.studentDashboardPage.Name = "studentDashboardPage";
@@ -176,9 +179,18 @@
             this.studentDashboardPage.Text = "Dashboard";
             this.studentDashboardPage.UseVisualStyleBackColor = true;
             // 
+            // selectedExamListBox
+            // 
+            this.selectedExamListBox.FormattingEnabled = true;
+            this.selectedExamListBox.ItemHeight = 25;
+            this.selectedExamListBox.Location = new System.Drawing.Point(39, 228);
+            this.selectedExamListBox.Name = "selectedExamListBox";
+            this.selectedExamListBox.Size = new System.Drawing.Size(572, 279);
+            this.selectedExamListBox.TabIndex = 1;
+            // 
             // studentMonthCalendar
             // 
-            this.studentMonthCalendar.Location = new System.Drawing.Point(352, 12);
+            this.studentMonthCalendar.Location = new System.Drawing.Point(159, 36);
             this.studentMonthCalendar.Name = "studentMonthCalendar";
             this.studentMonthCalendar.TabIndex = 0;
             // 
@@ -208,6 +220,7 @@
             this.signUpButton.TabIndex = 30;
             this.signUpButton.Text = "Sign up";
             this.signUpButton.UseVisualStyleBackColor = true;
+            this.signUpButton.Click += new System.EventHandler(this.signUpButton_Click);
             // 
             // allExamListBox
             // 
@@ -250,6 +263,7 @@
             this.finishExamButton.TabIndex = 39;
             this.finishExamButton.Text = "Finish";
             this.finishExamButton.UseVisualStyleBackColor = true;
+            this.finishExamButton.Click += new System.EventHandler(this.finishExamButton_Click);
             // 
             // examQuestionListBox
             // 
@@ -259,6 +273,7 @@
             this.examQuestionListBox.Name = "examQuestionListBox";
             this.examQuestionListBox.Size = new System.Drawing.Size(248, 379);
             this.examQuestionListBox.TabIndex = 38;
+            this.examQuestionListBox.Click += new System.EventHandler(this.examQuestionListBox_Click);
             // 
             // takeExamGroupBox
             // 
@@ -287,10 +302,10 @@
             this.answerCRadioButton.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.answerCRadioButton.Location = new System.Drawing.Point(6, 246);
             this.answerCRadioButton.Name = "answerCRadioButton";
-            this.answerCRadioButton.Size = new System.Drawing.Size(36, 24);
+            this.answerCRadioButton.Size = new System.Drawing.Size(34, 24);
             this.answerCRadioButton.TabIndex = 41;
             this.answerCRadioButton.TabStop = true;
-            this.answerCRadioButton.Text = "C";
+            this.answerCRadioButton.Text = "c";
             this.answerCRadioButton.UseVisualStyleBackColor = true;
             // 
             // answerDRadioButton
@@ -299,10 +314,10 @@
             this.answerDRadioButton.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.answerDRadioButton.Location = new System.Drawing.Point(7, 319);
             this.answerDRadioButton.Name = "answerDRadioButton";
-            this.answerDRadioButton.Size = new System.Drawing.Size(38, 24);
+            this.answerDRadioButton.Size = new System.Drawing.Size(36, 24);
             this.answerDRadioButton.TabIndex = 40;
             this.answerDRadioButton.TabStop = true;
-            this.answerDRadioButton.Text = "D";
+            this.answerDRadioButton.Text = "d";
             this.answerDRadioButton.UseVisualStyleBackColor = true;
             // 
             // answerBRadioButton
@@ -314,7 +329,7 @@
             this.answerBRadioButton.Size = new System.Drawing.Size(36, 24);
             this.answerBRadioButton.TabIndex = 39;
             this.answerBRadioButton.TabStop = true;
-            this.answerBRadioButton.Text = "B";
+            this.answerBRadioButton.Text = "b";
             this.answerBRadioButton.UseVisualStyleBackColor = true;
             // 
             // nextQuestionButton
@@ -329,8 +344,9 @@
             this.nextQuestionButton.Name = "nextQuestionButton";
             this.nextQuestionButton.Size = new System.Drawing.Size(112, 33);
             this.nextQuestionButton.TabIndex = 19;
-            this.nextQuestionButton.Text = "Next ";
+            this.nextQuestionButton.Text = "Save Answer";
             this.nextQuestionButton.UseVisualStyleBackColor = true;
+            this.nextQuestionButton.Click += new System.EventHandler(this.nextQuestionButton_Click);
             // 
             // answerDTextBox
             // 
@@ -365,10 +381,10 @@
             this.answerARadioButton.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.answerARadioButton.Location = new System.Drawing.Point(6, 100);
             this.answerARadioButton.Name = "answerARadioButton";
-            this.answerARadioButton.Size = new System.Drawing.Size(37, 24);
+            this.answerARadioButton.Size = new System.Drawing.Size(35, 24);
             this.answerARadioButton.TabIndex = 38;
             this.answerARadioButton.TabStop = true;
-            this.answerARadioButton.Text = "A";
+            this.answerARadioButton.Text = "a";
             this.answerARadioButton.UseVisualStyleBackColor = true;
             // 
             // answerBTextBox
@@ -428,6 +444,7 @@
             this.selectExamComboBox.Name = "selectExamComboBox";
             this.selectExamComboBox.Size = new System.Drawing.Size(263, 33);
             this.selectExamComboBox.TabIndex = 36;
+            this.selectExamComboBox.Click += new System.EventHandler(this.selectExamComboBox_Click);
             // 
             // takeExamButton
             // 
@@ -443,6 +460,7 @@
             this.takeExamButton.TabIndex = 35;
             this.takeExamButton.Text = "Take Exam";
             this.takeExamButton.UseVisualStyleBackColor = true;
+            this.takeExamButton.Click += new System.EventHandler(this.takeExamButton_Click);
             // 
             // accessCodeTextBox
             // 
@@ -453,7 +471,6 @@
             this.accessCodeTextBox.Name = "accessCodeTextBox";
             this.accessCodeTextBox.Size = new System.Drawing.Size(100, 33);
             this.accessCodeTextBox.TabIndex = 34;
-            this.accessCodeTextBox.Text = "Access code";
             // 
             // accessCodeLabel
             // 
@@ -791,5 +808,6 @@
         private System.Windows.Forms.ListBox examQuestionListBox;
         private System.Windows.Forms.Button finishExamButton;
         private System.Windows.Forms.MonthCalendar studentMonthCalendar;
+        private System.Windows.Forms.ListBox selectedExamListBox;
     }
 }

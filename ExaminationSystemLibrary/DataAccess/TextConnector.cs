@@ -130,6 +130,11 @@ namespace ExaminationSystemLibrary.DataAccess
         {
             return model1;
         }
+        public ResultModel CreateResult(ResultModel model)
+        {
+            return model;
+        }
+
     }
 }
  
