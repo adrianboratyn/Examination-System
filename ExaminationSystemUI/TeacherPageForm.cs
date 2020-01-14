@@ -19,11 +19,23 @@ namespace ExaminationSystemUI
         {
             InitializeComponent();
         }
-        
+
         public TeacherPageForm(string name)
         {
             InitializeComponent();
             teacherNameLabel.Text = name;
+
+            List<string> studentList1 = new List<string>();
+            foreach (ResultModel item in allStudentCourses)
+            {
+                if (item.ExamCreator == teacherNameLabel.Text)
+                {
+                    studentList1.Add(item.StudentUserName);
+                }
+            }
+            List<string> studentList2 = studentList1.Distinct().ToList();
+            teacherStudentListBox.DataSource = null;
+            teacherStudentListBox.DataSource = studentList2;
         }
         
         //code for creating new exam
@@ -34,13 +46,11 @@ namespace ExaminationSystemUI
             //exam name validation
             if (examNameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
             //access code validation
             if (accessCodeTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
             int accessCode = 0;
@@ -48,54 +58,46 @@ namespace ExaminationSystemUI
 
             if (accessCodeIsValid == false)
             {
-                //error message
                 output = false;
             }
             //question name validation
             if (questionNameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
 
             //answer a validation
             if (answerATextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
 
             //answer b validation
             if (answerBTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
 
             //answer c validation
             if (answerCTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
 
             //answer d validation
             if (answerDTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
 
             //correct answer validation
             if (correctAnswerTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
             //correct answer validation
             if (correctAnswerTextBox.Text.Length > 1)
             {
-                //error message
                 output = false;
             }
             return output;
@@ -166,13 +168,11 @@ namespace ExaminationSystemUI
             //exam name validation
             if (examNameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
             //access code validation
             if (accessCodeTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
             int accessCode = 0;
@@ -180,48 +180,41 @@ namespace ExaminationSystemUI
 
             if (accessCodeIsValid == false)
             {
-                //error message
                 output = false;
             }
             //question name validation
             if (questionNameTextBox.Text.Length != 0)
             {
-                //error message
                 output = false;
             }
 
             //answer a validation
             if (answerATextBox.Text.Length != 0)
             {
-                //error message
                 output = false;
             }
 
             //answer b validation
             if (answerBTextBox.Text.Length != 0)
             {
-                //error message
                 output = false;
             }
 
             //answer c validation
             if (answerCTextBox.Text.Length != 0)
             {
-                //error message
                 output = false;
             }
 
             //answer d validation
             if (answerDTextBox.Text.Length != 0)
             {
-                //error message
                 output = false;
             }
 
             //correct answer validation
             if (correctAnswerTextBox.Text.Length != 0)
             {
-                //error message
                 output = false;
             }
             
@@ -479,5 +472,48 @@ namespace ExaminationSystemUI
                 }
             }
         }
+
+
+        private List<ResultModel> allResult = GlobalConfig.Connection.GetResults();
+        private List<ResultModel> allStudentCourses = GlobalConfig.Connection.GetStudentCourses();
+        private List<ResultModel> teacherStudentResult = new List<ResultModel>();
+        private List<ExamModel> teacherStudentCourses = new List<ExamModel>();
+
+        private void selectExamResultComboBox_Click(object sender, EventArgs e)
+        {
+            resultListBox.DataSource = null;
+            teacherStudentResult.Clear();
+            teacherStudentCourses.Clear();
+            foreach (ExamModel item in allExamList)
+            {
+                if (item.Creator == teacherNameLabel.Text)
+                {
+                    teacherStudentCourses.Add(item);
+                }
+            }
+            selectExamResultComboBox.DataSource = null;
+            selectExamResultComboBox.DataSource = teacherStudentCourses;
+            selectExamResultComboBox.DisplayMember = "examName";
+        }
+        private ExamModel selectedResult = new ExamModel();
+
+        private void showResultButton_Click(object sender, EventArgs e)
+        {
+            teacherStudentResult.Clear();
+            selectedResult = (ExamModel)selectExamResultComboBox.SelectedItem;
+            foreach (ResultModel model in allResult)
+            {
+                if (model.ExamName == selectedResult.Name)
+                {
+                    teacherStudentResult.Add(model);
+                }
+            }
+            resultListBox.DataSource = null;
+            resultListBox.DataSource = teacherStudentResult;
+            resultListBox.DisplayMember = "resultForTeacher";
+        }
+
+        
+        
     }
 }

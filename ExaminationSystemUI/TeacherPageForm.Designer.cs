@@ -99,6 +99,7 @@
             this.teacherEditFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.teacherEditFirstNameLabel = new System.Windows.Forms.Label();
             this.teacherResultsPage = new System.Windows.Forms.TabPage();
+            this.showResultButton = new System.Windows.Forms.Button();
             this.resultListBox = new System.Windows.Forms.ListBox();
             this.selectExamResultComboBox = new System.Windows.Forms.ComboBox();
             this.selectExamResultLabel = new System.Windows.Forms.Label();
@@ -973,6 +974,7 @@
             // 
             // teacherResultsPage
             // 
+            this.teacherResultsPage.Controls.Add(this.showResultButton);
             this.teacherResultsPage.Controls.Add(this.resultListBox);
             this.teacherResultsPage.Controls.Add(this.selectExamResultComboBox);
             this.teacherResultsPage.Controls.Add(this.selectExamResultLabel);
@@ -984,13 +986,24 @@
             this.teacherResultsPage.Text = "Results";
             this.teacherResultsPage.UseVisualStyleBackColor = true;
             // 
+            // showResultButton
+            // 
+            this.showResultButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showResultButton.Location = new System.Drawing.Point(436, 34);
+            this.showResultButton.Name = "showResultButton";
+            this.showResultButton.Size = new System.Drawing.Size(75, 33);
+            this.showResultButton.TabIndex = 35;
+            this.showResultButton.Text = "Show";
+            this.showResultButton.UseVisualStyleBackColor = true;
+            this.showResultButton.Click += new System.EventHandler(this.showResultButton_Click);
+            // 
             // resultListBox
             // 
             this.resultListBox.FormattingEnabled = true;
             this.resultListBox.ItemHeight = 25;
             this.resultListBox.Location = new System.Drawing.Point(24, 96);
             this.resultListBox.Name = "resultListBox";
-            this.resultListBox.Size = new System.Drawing.Size(379, 429);
+            this.resultListBox.Size = new System.Drawing.Size(599, 429);
             this.resultListBox.TabIndex = 34;
             // 
             // selectExamResultComboBox
@@ -1000,6 +1013,7 @@
             this.selectExamResultComboBox.Name = "selectExamResultComboBox";
             this.selectExamResultComboBox.Size = new System.Drawing.Size(263, 33);
             this.selectExamResultComboBox.TabIndex = 28;
+            this.selectExamResultComboBox.Click += new System.EventHandler(this.selectExamResultComboBox_Click);
             // 
             // selectExamResultLabel
             // 
@@ -1145,5 +1159,6 @@
         private System.Windows.Forms.ListBox teacherStudentListBox;
         private System.Windows.Forms.MonthCalendar teacherMonthCalendar;
         private System.Windows.Forms.Button editExamButton;
+        private System.Windows.Forms.Button showResultButton;
     }
 }
