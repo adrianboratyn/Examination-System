@@ -111,27 +111,18 @@ namespace ExaminationSystemUI
         private List<ExamModel> signUpExamList = new List<ExamModel>();
         private void signUpButton_Click(object sender, EventArgs e)
         {
-            if(signUpExamList.Count() == 0)
-            {
-                signUpExamList.Add((ExamModel)allExamListBox.SelectedItem);
-                selectedExamListBox.DataSource = null;
-                selectedExamListBox.DataSource = signUpExamList;
-                selectedExamListBox.DisplayMember = "examAndCode";
-            }
-            foreach (ExamModel model in signUpExamList)
-            {
-                if(model != (ExamModel)allExamListBox.SelectedItem)
-                {
-                    signUpExamList.Add((ExamModel)allExamListBox.SelectedItem);
-                    selectedExamListBox.DataSource = null;
-                    selectedExamListBox.DataSource = signUpExamList;
-                    selectedExamListBox.DisplayMember = "examAndCode";
-                }
-            }
+            ExamModel model = (ExamModel)allExamListBox.SelectedItem;
+            
+            signUpExamList.Add(model);
+            selectedExamListBox.DataSource = null;
+            selectedExamListBox.DataSource = signUpExamList;
+            selectedExamListBox.DisplayMember = "examAndCode";
+            
         }
 
         private void selectExamComboBox_Click(object sender, EventArgs e)
         {
+            
             selectExamComboBox.DataSource = allExamList;
             selectExamComboBox.DisplayMember = "examName";
         }
@@ -249,9 +240,10 @@ namespace ExaminationSystemUI
             result.StudentUserName = studentNameLabel.Text;
             result.Score = score;
             GlobalConfig.Connection.CreateResult(result);
-
+            
             examQuestions.Clear();
-
+            allStudentCourses = GlobalConfig.Connection.GetStudentCourses();
+            allResult = GlobalConfig.Connection.GetResults();
             questionNameTextBox.Text = "";
             answerATextBox.Text = "";
             answerBTextBox.Text = "";
@@ -266,6 +258,45 @@ namespace ExaminationSystemUI
 
         }
 
-        
+        private List<ResultModel> allResult = GlobalConfig.Connection.GetResults();
+        private List<ResultModel> allStudentCourses = GlobalConfig.Connection.GetStudentCourses();
+        private List<ResultModel> studentResult = new List<ResultModel>();
+        private List<ResultModel> studentCourses = new List<ResultModel>();
+
+        private void selectExamResultComboBox_Click(object sender, EventArgs e)
+        {
+            selectExamResultComboBox.DataSource = null;
+            
+            resultListBox.DataSource = null;
+            studentResult.Clear();
+            studentCourses.Clear();
+            foreach (ResultModel item in allStudentCourses)
+            {
+                if (item.StudentUserName == studentNameLabel.Text)
+                {
+                    studentCourses.Add(item);
+                }
+            }
+            selectExamResultComboBox.DataSource = null;
+            selectExamResultComboBox.DataSource = studentCourses;
+            selectExamResultComboBox.DisplayMember = "examName";
+        }
+        private ResultModel selectedResult = new ResultModel();
+        private void showResultButton_Click(object sender, EventArgs e)
+        {
+            studentResult.Clear();
+            selectedResult = (ResultModel)selectExamResultComboBox.SelectedItem;
+            foreach (ResultModel model in allResult)
+            {
+                if (model.StudentUserName == selectedResult.StudentUserName && model.ExamName == selectedResult.ExamName)
+                {
+                    studentResult.Add(model);
+                }
+            }
+            resultListBox.DataSource = null;
+            resultListBox.DataSource = studentResult;
+            resultListBox.DisplayMember = "resultForStudent";
+        }
+
     }
 }

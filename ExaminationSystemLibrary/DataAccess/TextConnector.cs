@@ -134,6 +134,16 @@ namespace ExaminationSystemLibrary.DataAccess
         {
             return model;
         }
+        public List<ResultModel> GetResults()
+        {
+            List<ResultModel> output = new List<ResultModel>();
+            return output;
+        }
+        public List<ResultModel> GetStudentCourses()
+        {
+            List<ResultModel> output = new List<ResultModel>();
+            return output;
+        }
 
     }
 }

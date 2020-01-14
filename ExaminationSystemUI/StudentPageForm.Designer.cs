@@ -80,6 +80,7 @@
             this.studentEditLastNameLabel = new System.Windows.Forms.Label();
             this.studentEditFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.studentEditFirstNameLabel = new System.Windows.Forms.Label();
+            this.showResultButton = new System.Windows.Forms.Button();
             this.adminPagePanel.SuspendLayout();
             this.studentMenuTabControl.SuspendLayout();
             this.studentDashboardPage.SuspendLayout();
@@ -496,6 +497,7 @@
             // 
             // studentMyResultsPage
             // 
+            this.studentMyResultsPage.Controls.Add(this.showResultButton);
             this.studentMyResultsPage.Controls.Add(this.resultListBox);
             this.studentMyResultsPage.Controls.Add(this.selectExamResultComboBox);
             this.studentMyResultsPage.Controls.Add(this.selectExamResultLabel);
@@ -514,7 +516,7 @@
             this.resultListBox.ItemHeight = 25;
             this.resultListBox.Location = new System.Drawing.Point(13, 80);
             this.resultListBox.Name = "resultListBox";
-            this.resultListBox.Size = new System.Drawing.Size(379, 454);
+            this.resultListBox.Size = new System.Drawing.Size(614, 454);
             this.resultListBox.TabIndex = 37;
             // 
             // selectExamResultComboBox
@@ -524,6 +526,7 @@
             this.selectExamResultComboBox.Name = "selectExamResultComboBox";
             this.selectExamResultComboBox.Size = new System.Drawing.Size(263, 33);
             this.selectExamResultComboBox.TabIndex = 36;
+            this.selectExamResultComboBox.Click += new System.EventHandler(this.selectExamResultComboBox_Click);
             // 
             // selectExamResultLabel
             // 
@@ -724,6 +727,17 @@
             this.studentEditFirstNameLabel.TabIndex = 40;
             this.studentEditFirstNameLabel.Text = "First Name";
             // 
+            // showResultButton
+            // 
+            this.showResultButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showResultButton.Location = new System.Drawing.Point(413, 18);
+            this.showResultButton.Name = "showResultButton";
+            this.showResultButton.Size = new System.Drawing.Size(79, 33);
+            this.showResultButton.TabIndex = 38;
+            this.showResultButton.Text = "Show";
+            this.showResultButton.UseVisualStyleBackColor = true;
+            this.showResultButton.Click += new System.EventHandler(this.showResultButton_Click);
+            // 
             // StudentPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
@@ -809,5 +823,6 @@
         private System.Windows.Forms.Button finishExamButton;
         private System.Windows.Forms.MonthCalendar studentMonthCalendar;
         private System.Windows.Forms.ListBox selectedExamListBox;
+        private System.Windows.Forms.Button showResultButton;
     }
 }

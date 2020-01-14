@@ -401,7 +401,24 @@ namespace ExaminationSystemLibrary.DataAccess
                 return model;
             }
         }
-
+        public List<ResultModel> GetResults()
+        {
+            List<ResultModel> output;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                output = connection.Query<ResultModel>("dbo.spResult_Get").ToList();
+            }
+            return output;
+        }
+        public List<ResultModel> GetStudentCourses()
+        {
+            List<ResultModel> output;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
+            {
+                output = connection.Query<ResultModel>("dbo.spStudentCourses_Get").ToList();
+            }
+            return output;
+        }
 
 
     }
