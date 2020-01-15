@@ -718,7 +718,6 @@
             this.Name = "CreateAccountForm";
             this.Text = "Examination System";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateAccountForm_FormClosing);
-            this.Load += new System.EventHandler(this.CreateAccountForm_Load);
             this.teacherAccountGroupBox.ResumeLayout(false);
             this.teacherAccountGroupBox.PerformLayout();
             this.adminAccountGroupBox.ResumeLayout(false);

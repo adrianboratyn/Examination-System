@@ -15,7 +15,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
         public static string FullFilePath(this string fileName) // extension method -> fileName.FullFilePath()
         {
             return $"{ ConfigurationManager.AppSettings["filePath"]}\\{ fileName }";
-            
         }
 
         public static List<string> LoadFile(this string file)
@@ -24,7 +23,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
             {
                 return new List<string>();
             }
-
             return File.ReadAllLines(file).ToList();
         }
 
@@ -32,11 +30,9 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
         public static List<StudentModel> ConvertToStudentModels(this List<String> lines)
         {
             List<StudentModel> output = new List<StudentModel>();
-
             foreach(string line in lines)
             {
                 string[] columns = line.Split(',');
-
                 StudentModel model = new StudentModel();
                 model.FirstName = columns[0];
                 model.LastName = columns[1];
@@ -45,7 +41,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
                 model.Age = int.Parse(columns[4]);
                 model.School = columns[5];
                 model.DegreeCourse = columns[6];
-
                 output.Add(model);
             }
             return output;
@@ -58,7 +53,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
             {
                 lines.Add($"{ model.FirstName },{ model.LastName },{ model.UserName },{ model.Password },{ model.Age },{ model.School },{ model.DegreeCourse }");
             }
-
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
@@ -66,11 +60,9 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
         public static List<TeacherModel> ConvertToTeacherModels(this List<String> lines)
         {
             List<TeacherModel> output = new List<TeacherModel>();
-
             foreach (string line in lines)
             {
                 string[] columns = line.Split(',');
-
                 TeacherModel model = new TeacherModel();
                 model.FirstName = columns[0];
                 model.LastName = columns[1];
@@ -78,7 +70,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
                 model.Password = columns[3];
                 model.AcademicTitle = columns[4];
                 model.School = columns[5];
-
                 output.Add(model);
             }
             return output;
@@ -91,7 +82,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
             {
                 lines.Add($"{ model.FirstName },{ model.LastName },{ model.UserName },{ model.Password },{ model.AcademicTitle },{ model.School }");
             }
-
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
@@ -99,17 +89,14 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
         public static List<AdminModel> ConvertToAdminModels(this List<String> lines)
         {
             List<AdminModel> output = new List<AdminModel>();
-
             foreach (string line in lines)
             {
                 string[] columns = line.Split(',');
-
                 AdminModel model = new AdminModel();
                 model.FirstName = columns[0];
                 model.LastName = columns[1];
                 model.UserName = columns[2];
                 model.Password = columns[3];               
-
                 output.Add(model);
             }
             return output;
@@ -122,7 +109,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
             {
                 lines.Add($"{ model.FirstName },{ model.LastName },{ model.UserName },{ model.Password }");
             }
-
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
@@ -130,11 +116,9 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
         public static List<QuestionModel> ConvertToQuestionModels(this List<String> lines)
         {
             List<QuestionModel> output = new List<QuestionModel>();
-
             foreach (string line in lines)
             {
                 string[] columns = line.Split(',');
-
                 QuestionModel model = new QuestionModel();
                 model.ExamName = columns[0];
                 model.Question = columns[1];
@@ -144,8 +128,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
                 model.AnswerC = columns[5];
                 model.AnswerD = columns[6];
                 model.CorrectAnswer = columns[7];
-
-
                 output.Add(model);
             }
             return output;
@@ -158,7 +140,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
             {
                 lines.Add($"{ model.ExamName },{ model.Question },{ model.QuestionNumber },{ model.AnswerA },{ model.AnswerB },{ model.AnswerC },{ model.AnswerD },{ model.CorrectAnswer }");
             }
-
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
@@ -166,18 +147,14 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
         public static List<ExamModel> ConvertToExamModels(this List<String> lines)
         {
             List<ExamModel> output = new List<ExamModel>();
-
             foreach (string line in lines)
             {
                 string[] columns = line.Split(',');
-
                 ExamModel model = new ExamModel();
                 model.AccessCode = int.Parse(columns[0]);
                 model.Creator = columns[1];
                 model.Name = columns[2];
-                model.QuestionAmount = int.Parse(columns[3]);
-               
-
+                model.QuestionAmount = int.Parse(columns[3]);              
                 output.Add(model);
             }
             return output;
@@ -190,7 +167,6 @@ namespace ExaminationSystemLibrary.DataAccess.TextHelpers
             {
                 lines.Add($"{ model.AccessCode },{ model.Creator },{ model.Name },{ model.QuestionAmount }");
             }
-
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
     }

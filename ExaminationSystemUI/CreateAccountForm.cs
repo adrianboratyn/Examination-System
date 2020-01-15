@@ -21,11 +21,6 @@ namespace ExaminationSystemUI
             InitializeComponent();
         }
 
-        private void CreateAccountForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         //code for student account
         private void studentRoleButton_Click(object sender, EventArgs e)
         {
@@ -48,71 +43,52 @@ namespace ExaminationSystemUI
         private bool ValidateStudentAccount()
         {
             bool output = true;
-
             //first name validation
             if (studentFirstNameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //last name validation
             if (studentLastNameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //user name validation
             if (studentUsernameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //password validation
             if (studentPasswordTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //age validation
             int ageNumber = 0;
             bool ageNumberIsValid = int.TryParse(studentAgeTextBox.Text, out ageNumber);
-
             if (ageNumberIsValid == false)
             {
-                //error message
                 output = false;
             }
             if (ageNumber < 1)
             {
-                //error message
-                MessageBox.Show("Zero");
-
+                MessageBox.Show("Provide valid age");
                 output = false;
             }
             if (studentAgeTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //school validation
             if (studentSchoolTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //degree course validation
             if (studentDegreeCourseTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             return output;
         }
 
@@ -128,11 +104,10 @@ namespace ExaminationSystemUI
                     studentAgeTextBox.Text,
                     studentSchoolTextBox.Text,
                     studentDegreeCourseTextBox.Text);
-
                
                 bool query = GlobalConfig.Connection.CreateStudentAccount(model);
-
-                if(query == false)
+                MessageBox.Show("Success!");
+                if (query == false)
                 {
                     MessageBox.Show("User with this data already exist");
                 }
@@ -150,7 +125,6 @@ namespace ExaminationSystemUI
                 MessageBox.Show("Invalid information. Try again.");
             }
         }
-
 
         //code for teacher account
         private void teacherRoleButton_Click(object sender, EventArgs e)
@@ -174,49 +148,36 @@ namespace ExaminationSystemUI
         private bool ValidateTeacherAccount()
         {
             bool output = true;
-
             //first name validation
             if (teacherFirstNameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //last name validation
             if (teacherLastNameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //user name validation
             if (teacherUsernameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //password validation
             if (teacherPasswordTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //school validation
             if (teacherSchoolTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //academic title validation
             if (teacherAcademicTitleTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             return output;
         }
 
@@ -233,7 +194,7 @@ namespace ExaminationSystemUI
                     teacherAcademicTitleTextBox.Text);
 
                 bool query = GlobalConfig.Connection.CreateTeacherAccount(model);
-
+                MessageBox.Show("Success!");
                 if (query == false)
                 {
                     MessageBox.Show("User with this data already exist");
@@ -251,7 +212,6 @@ namespace ExaminationSystemUI
                 MessageBox.Show("Invalid information. Try again.");
             }
         }
-
 
         //code for admin account
         private void adminRoleButton_Click(object sender, EventArgs e)
@@ -274,35 +234,26 @@ namespace ExaminationSystemUI
         private bool ValidateAdminAccount()
         {
             bool output = true;
-
             //first name validation
             if (adminFirstNameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //last name validation
             if (adminLastNameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //user name validation
             if (adminUsernameTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             //password validation
             if (adminPasswordTextBox.Text.Length == 0)
             {
-                //error message
                 output = false;
             }
-
             return output;
         }
 
@@ -317,7 +268,7 @@ namespace ExaminationSystemUI
                     adminPasswordTextBox.Text);
 
                 bool query = GlobalConfig.Connection.CreateAdminAccount(model);
-
+                MessageBox.Show("Success!");
                 if (query == false)
                 {
                     MessageBox.Show("User with this data already exist");

@@ -40,22 +40,18 @@ namespace ExaminationSystemUI
         private bool ValidateStudentEditProfile()
         {
             bool output = true;
-
             if (studentEditFirstNameTextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             if (studentEditLastNameTextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             if (studentEditUsernameTextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             if (studentEditPasswordTextBox.Text.Length == 0)
             {
                 output = false;
@@ -88,7 +84,6 @@ namespace ExaminationSystemUI
                 model.School = studentEditSchoolTextBox.Text;
                 model.DegreeCourse = studentEditDegreeCourseTextBox.Text;
 
-
                 if (GlobalConfig.Connection.EditStudentAccount(model, studentNameLabel.Text) == true)
                 {
                     MessageBox.Show("Update Successful");
@@ -111,18 +106,15 @@ namespace ExaminationSystemUI
         private List<ExamModel> signUpExamList = new List<ExamModel>();
         private void signUpButton_Click(object sender, EventArgs e)
         {
-            ExamModel model = (ExamModel)allExamListBox.SelectedItem;
-            
+            ExamModel model = (ExamModel)allExamListBox.SelectedItem;          
             signUpExamList.Add(model);
             selectedExamListBox.DataSource = null;
             selectedExamListBox.DataSource = signUpExamList;
-            selectedExamListBox.DisplayMember = "examAndCode";
-            
+            selectedExamListBox.DisplayMember = "examAndCode";          
         }
 
         private void selectExamComboBox_Click(object sender, EventArgs e)
-        {
-            
+        {           
             selectExamComboBox.DataSource = allExamList;
             selectExamComboBox.DisplayMember = "examName";
         }
@@ -172,7 +164,6 @@ namespace ExaminationSystemUI
         private void examQuestionListBox_Click(object sender, EventArgs e)
         {
             selectedQuestion = (QuestionModel)examQuestionListBox.SelectedItem;
-
             questionNameTextBox.Text = selectedQuestion.Question;
             answerATextBox.Text = selectedQuestion.AnswerA;
             answerBTextBox.Text = selectedQuestion.AnswerB;
@@ -191,13 +182,11 @@ namespace ExaminationSystemUI
             {
                 answers[examQuestions.IndexOf(selectedQuestion)] = 'b';
                 answerBRadioButton.Checked = false;
-
             }
             if (answerCRadioButton.Checked == true)
             {
                 answers[examQuestions.IndexOf(selectedQuestion)] = 'c';
                 answerCRadioButton.Checked = false;
-
             }
             if (answerDRadioButton.Checked == true)
             {
@@ -221,8 +210,7 @@ namespace ExaminationSystemUI
                 if (answers[examQuestions.IndexOf(model)] == 'f')
                 {
                     MessageBox.Show("You didn't answer all questions");
-                    allAnswers = false;
-                    
+                    allAnswers = false;                   
                 }
                 else if (answer == answers[examQuestions.IndexOf(model)])
                 {
@@ -233,12 +221,13 @@ namespace ExaminationSystemUI
             {
                 MessageBox.Show("Your score: " + score.ToString() + "/" + examQuestions.Count()) ;
             }
-
+            
             ResultModel result = new ResultModel();
             result.ExamCreator = selectedExam.Creator;
             result.ExamName = selectedExam.Name;
             result.StudentUserName = studentNameLabel.Text;
             result.Score = score;
+            result.Data = DateTime.Now ;
             GlobalConfig.Connection.CreateResult(result);
             
             examQuestions.Clear();
@@ -252,10 +241,8 @@ namespace ExaminationSystemUI
 
             examQuestionListBox.DataSource = null;
             examQuestionListBox.DataSource = examQuestions;
-
             selectedExam = null;
             selectedQuestion = null;
-
         }
 
         private List<ResultModel> allResult = GlobalConfig.Connection.GetResults();
@@ -265,8 +252,7 @@ namespace ExaminationSystemUI
 
         private void selectExamResultComboBox_Click(object sender, EventArgs e)
         {
-            selectExamResultComboBox.DataSource = null;
-            
+            selectExamResultComboBox.DataSource = null;          
             resultListBox.DataSource = null;
             studentResult.Clear();
             studentCourses.Clear();
@@ -281,6 +267,7 @@ namespace ExaminationSystemUI
             selectExamResultComboBox.DataSource = studentCourses;
             selectExamResultComboBox.DisplayMember = "examName";
         }
+
         private ResultModel selectedResult = new ResultModel();
         private void showResultButton_Click(object sender, EventArgs e)
         {
@@ -297,6 +284,5 @@ namespace ExaminationSystemUI
             resultListBox.DataSource = studentResult;
             resultListBox.DisplayMember = "resultForStudent";
         }
-
     }
 }

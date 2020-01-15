@@ -16,7 +16,6 @@ namespace ExaminationSystemLibrary.DataAccess
         private const string QUESTIONS_LIST_FILE = "QuestionsList.csv";
         private const string EXAMS_LIST_FILE = "ExamsList.csv";
 
-
         public bool CreateStudentAccount(StudentModel model)
         {
             //extension method
@@ -26,9 +25,9 @@ namespace ExaminationSystemLibrary.DataAccess
             models.Add(model);
             //save the List<string> to the text file (overwritten text file)
             models.SaveToStudentFile(STUDENTS_ACCOUNT_FILE);
-
             return true;
         }
+
         public bool StudentLogin(string userName, string password)
         {
             return true;
@@ -37,6 +36,7 @@ namespace ExaminationSystemLibrary.DataAccess
         {
             return true;
         }
+
         public bool CreateTeacherAccount(TeacherModel model)
         {
             //extension method
@@ -46,9 +46,9 @@ namespace ExaminationSystemLibrary.DataAccess
             models.Add(model);
             //save the List<string> to the text file (overwritten text file)
             models.SaveToTeacherFile(TEACHERS_ACCOUNT_FILE);
-
             return true;
         }
+
         public bool TeacherLogin(string userName, string password)
         {
             return true;
@@ -57,6 +57,7 @@ namespace ExaminationSystemLibrary.DataAccess
         {
             return true;
         }
+
         public bool CreateAdminAccount(AdminModel model)
         {
             //extension method
@@ -66,9 +67,9 @@ namespace ExaminationSystemLibrary.DataAccess
             models.Add(model);
             //save the List<string> to the text file (overwritten text file)
             models.SaveToAdminFile(ADMINS_ACCOUNT_FILE);
-
             return true;
         }
+
         public bool AdminLogin(string userName, string password)
         {
             return true;
@@ -77,7 +78,8 @@ namespace ExaminationSystemLibrary.DataAccess
         {
             return true;
         }
-        public QuestionModel CreateQuestion(QuestionModel model)
+
+        public void CreateQuestion(QuestionModel model)
         {
             //extension method
             //load the text file and convert the text to List<QuestionModel>
@@ -86,10 +88,9 @@ namespace ExaminationSystemLibrary.DataAccess
             models.Add(model);
             //save the List<string> to the text file (overwritten text file)
             models.SaveToQuestionFile(QUESTIONS_LIST_FILE);
-
-            return model;
         }
-        public ExamModel CreateExam(ExamModel model)
+
+        public void CreateExam(ExamModel model)
         {
             //extension method
             //load the text file and convert the text to List<ExamModel>
@@ -98,41 +99,28 @@ namespace ExaminationSystemLibrary.DataAccess
             models.Add(model);
             //save the List<string> to the text file (overwritten text file)
             models.SaveToExamFile(EXAMS_LIST_FILE);
-
-            return model;
         }
+
         public List<ExamModel> GetExams()
         {
             List<ExamModel> output = new List<ExamModel>();
-            //using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
-            //{
-                //output = connection.Query<ExamModel>("dbo.spExam_Get").ToList();
-            //}
             return output;
         }
 
         public List<QuestionModel> GetQuestions()
         {
             List<QuestionModel> output;
-            //using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
-            //{
-               // output = connection.Query<QuestionModel>("dbo.spQuestion_Get").ToList();
-            //}
             return output = new List<QuestionModel>();
         }
 
-        public ExamModel UpdateExam(ExamModel model1, ExamModel model2)
+        public void UpdateExam(ExamModel model1, ExamModel model2)
         {
-            return model1;
         }
-
-        public QuestionModel UpdateQuestion(QuestionModel model1, ExamModel model2)
+        public void UpdateQuestion(QuestionModel model1, ExamModel model2)
         {
-            return model1;
         }
-        public ResultModel CreateResult(ResultModel model)
+        public void CreateResult(ResultModel model)
         {
-            return model;
         }
         public List<ResultModel> GetResults()
         {
@@ -144,7 +132,6 @@ namespace ExaminationSystemLibrary.DataAccess
             List<ResultModel> output = new List<ResultModel>();
             return output;
         }
-
     }
 }
  

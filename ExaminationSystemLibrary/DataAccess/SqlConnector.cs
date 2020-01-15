@@ -16,7 +16,6 @@ namespace ExaminationSystemLibrary.DataAccess
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
                 bool query = false;
-
                 var p = new DynamicParameters();
                 p.Add("FirstName", model.FirstName);
                 p.Add("LastName", model.LastName);
@@ -32,7 +31,6 @@ namespace ExaminationSystemLibrary.DataAccess
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 0)
                 {
@@ -42,19 +40,18 @@ namespace ExaminationSystemLibrary.DataAccess
                 return query;
             }
         }
+
         public bool StudentLogin(string userName, string password)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
                 bool query = false;
-
                 var d = new DynamicParameters();
                 d.Add("UserName", userName);
                 d.Add("Password", password);
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 connection.Execute("dbo.spStudent_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 1)
                 {
@@ -68,7 +65,6 @@ namespace ExaminationSystemLibrary.DataAccess
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
                 bool query = false;
-
                 var p = new DynamicParameters();
                 p.Add("FirstName", model.FirstName);
                 p.Add("LastName", model.LastName);
@@ -88,7 +84,6 @@ namespace ExaminationSystemLibrary.DataAccess
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 0 || oldUserName == model.UserName)
                 {
@@ -96,16 +91,15 @@ namespace ExaminationSystemLibrary.DataAccess
                     connection.Execute("dbo.spStudent_Update", p, commandType: CommandType.StoredProcedure);
                     query = true;
                 }
-
                 return query;
             }
         }
+
         public bool CreateTeacherAccount(TeacherModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
                 bool query = false;
-
                 var p = new DynamicParameters();
                 p.Add("FirstName", model.FirstName);
                 p.Add("LastName", model.LastName);
@@ -120,31 +114,27 @@ namespace ExaminationSystemLibrary.DataAccess
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 0)
                 {
                     query = true;
                     connection.Execute("dbo.spTeacher_Insert", p, commandType: CommandType.StoredProcedure);
                 }
-
-
                 return query;
             }
         }
+
         public bool TeacherLogin(string userName, string password)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
                 bool query = false;
-
                 var d = new DynamicParameters();
                 d.Add("UserName", userName);
                 d.Add("Password", password);
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 connection.Execute("dbo.spTeacher_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 1)
                 {
@@ -153,12 +143,12 @@ namespace ExaminationSystemLibrary.DataAccess
                 return query;
             }
         }
+
         public bool EditTeacherAccount(TeacherModel model, string oldUserName)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
                 bool query = false;
-
                 var p = new DynamicParameters();
                 p.Add("FirstName", model.FirstName);
                 p.Add("LastName", model.LastName);
@@ -177,7 +167,6 @@ namespace ExaminationSystemLibrary.DataAccess
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 0 || oldUserName == model.UserName)
                 {
@@ -185,16 +174,15 @@ namespace ExaminationSystemLibrary.DataAccess
                     connection.Execute("dbo.spTeacher_Update", p, commandType: CommandType.StoredProcedure);
                     query = true;
                 }
-
                 return query;
             }
         }
+
         public bool CreateAdminAccount(AdminModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
                 bool query = false;
-
                 var p = new DynamicParameters();
                 p.Add("FirstName", model.FirstName);
                 p.Add("LastName", model.LastName);
@@ -207,31 +195,27 @@ namespace ExaminationSystemLibrary.DataAccess
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 0)
                 {
                     query = true;
                     connection.Execute("dbo.spAdmin_Insert", p, commandType: CommandType.StoredProcedure);
                 }
-
-
                 return query;
             }
         }
+
         public bool AdminLogin(string userName, string password)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
                 bool query = false;
-
                 var d = new DynamicParameters();
                 d.Add("UserName", userName);
                 d.Add("Password", password);
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 connection.Execute("dbo.spAdmin_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 1)
                 {
@@ -240,12 +224,12 @@ namespace ExaminationSystemLibrary.DataAccess
                 return query;
             }
         }
+
         public bool EditAdminAccount(AdminModel model, string oldUserName)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
                 bool query = false;
-
                 var p = new DynamicParameters();
                 p.Add("FirstName", model.FirstName);
                 p.Add("LastName", model.LastName);
@@ -262,19 +246,18 @@ namespace ExaminationSystemLibrary.DataAccess
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 connection.Execute("dbo.spUser_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
                 if (rows == 0 || oldUserName == model.UserName)
                 {
                     connection.Execute("dbo.spUser_Update", b, commandType: CommandType.StoredProcedure);
                     connection.Execute("dbo.spAdmin_Update", p, commandType: CommandType.StoredProcedure);
                     query = true;
-                }
-                
+                }                
                 return query;
             }
         }
-        public QuestionModel CreateQuestion(QuestionModel model)
+
+        public void CreateQuestion(QuestionModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
@@ -288,13 +271,11 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("AnswerD", model.AnswerD);
                 p.Add("CorrectAnswer", model.CorrectAnswer);
 
-
-                connection.Execute("dbo.spQuestion_Insert", p, commandType: CommandType.StoredProcedure);
-
-                return model;
+                connection.Execute("dbo.spQuestion_Insert", p, commandType: CommandType.StoredProcedure);               
             }
         }
-        public ExamModel CreateExam(ExamModel model)
+
+        public void CreateExam(ExamModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
@@ -304,10 +285,7 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("Name", model.Name);
                 p.Add("NumberOfQuestions", model.QuestionAmount);
                
-
-                connection.Execute("dbo.spExam_Insert", p, commandType: CommandType.StoredProcedure);
-
-                return model;
+                connection.Execute("dbo.spExam_Insert", p, commandType: CommandType.StoredProcedure);                
             }
         }
 
@@ -331,7 +309,7 @@ namespace ExaminationSystemLibrary.DataAccess
             return output;
         }
 
-        public ExamModel UpdateExam(ExamModel model1, ExamModel model2)
+        public void UpdateExam(ExamModel model1, ExamModel model2)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
@@ -342,14 +320,11 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("NumberOfQuestions", model1.QuestionAmount);
                 p.Add("OldName", model2.Name);
 
-
                 connection.Execute("dbo.spExam_Update", p, commandType: CommandType.StoredProcedure);
-
-                return model1;
             }
         }
 
-        public QuestionModel UpdateQuestion(QuestionModel model1, ExamModel model2)
+        public void UpdateQuestion(QuestionModel model1, ExamModel model2)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
@@ -364,12 +339,10 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("CorrectAnswer", model1.CorrectAnswer);
                 p.Add("OldName", model2.Name);
 
-
-                connection.Execute("dbo.spQuestion_Update", p, commandType: CommandType.StoredProcedure);
-                return model1;
+                connection.Execute("dbo.spQuestion_Update", p, commandType: CommandType.StoredProcedure);              
             }
         }
-        public ResultModel CreateResult(ResultModel model)
+        public void CreateResult(ResultModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Examination System")))
             {
@@ -377,8 +350,7 @@ namespace ExaminationSystemLibrary.DataAccess
                 p.Add("ExamName", model.ExamName);
                 p.Add("StudentUserName", model.StudentUserName);
                 p.Add("Score", model.Score);
-
-
+                p.Add("ExamDate", model.Data);
                 connection.Execute("dbo.spResult_Insert", p, commandType: CommandType.StoredProcedure);
 
                 var d = new DynamicParameters();
@@ -386,7 +358,6 @@ namespace ExaminationSystemLibrary.DataAccess
                 d.Add("StudentUserName", model.StudentUserName);
                 d.Add("@UpdatedCounter", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
                 connection.Execute("dbo.spStudentCourses_Check", d, commandType: CommandType.StoredProcedure);
-
                 int rows = d.Get<int>("@UpdatedCounter");
 
                 var b = new DynamicParameters();
@@ -397,10 +368,9 @@ namespace ExaminationSystemLibrary.DataAccess
                 {
                     connection.Execute("dbo.spStudentCourses_Insert", b, commandType: CommandType.StoredProcedure);
                 }
-
-                return model;
             }
         }
+
         public List<ResultModel> GetResults()
         {
             List<ResultModel> output;
@@ -410,6 +380,7 @@ namespace ExaminationSystemLibrary.DataAccess
             }
             return output;
         }
+
         public List<ResultModel> GetStudentCourses()
         {
             List<ResultModel> output;
@@ -419,7 +390,5 @@ namespace ExaminationSystemLibrary.DataAccess
             }
             return output;
         }
-
-
     }
 }

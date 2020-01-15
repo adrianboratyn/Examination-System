@@ -18,6 +18,7 @@ namespace ExaminationSystemUI
         {
             InitializeComponent();
         }
+
         private bool ValidateLogin()
         {
             bool output = true;
@@ -27,9 +28,9 @@ namespace ExaminationSystemUI
             }
             return output;
         }
+
         private void loginButton_Click(object sender, EventArgs e)
-        {
-            
+        {         
             if(ValidateLogin() == true)
             {
                 if(studentRadioButton.Checked == true)

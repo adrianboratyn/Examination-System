@@ -18,13 +18,13 @@ namespace ExaminationSystemLibrary.DataAccess
         bool CreateAdminAccount(AdminModel model);
         bool AdminLogin(string userName, string password);
         bool EditAdminAccount(AdminModel model, string oldUserName);
-        QuestionModel CreateQuestion(QuestionModel model);
-        ExamModel CreateExam(ExamModel model);
+        void CreateQuestion(QuestionModel model);
+        void CreateExam(ExamModel model);
         List<ExamModel> GetExams();
         List<QuestionModel> GetQuestions();
-        ExamModel UpdateExam(ExamModel model1, ExamModel model2);
-        QuestionModel UpdateQuestion(QuestionModel model1, ExamModel model2);
-        ResultModel CreateResult(ResultModel model);
+        void UpdateExam(ExamModel model1, ExamModel model2);
+        void UpdateQuestion(QuestionModel model1, ExamModel model2);
+        void CreateResult(ResultModel model);
         List<ResultModel> GetResults();
         List<ResultModel> GetStudentCourses();
     }

@@ -24,13 +24,11 @@ namespace ExaminationSystemUI
             InitializeComponent();
             adminNameLabel.Text = name;
 
+            //code for student list
             List<string> studentList1 = new List<string>();
             foreach (ResultModel item in allStudentCourses)
-            {
-                if (item.ExamCreator == adminNameLabel.Text)
-                {
-                    studentList1.Add(item.StudentUserName);
-                }
+            {    
+                studentList1.Add(item.StudentUserName);
             }
             List<string> studentList2 = studentList1.Distinct().ToList();
             adminStudentListBox.DataSource = null;
@@ -53,7 +51,6 @@ namespace ExaminationSystemUI
         private bool ValidateAdminAddQuestion()
         {
             bool output = true;
-
             //exam name validation
             if (examNameTextBox.Text.Length == 0)
             {
@@ -64,9 +61,9 @@ namespace ExaminationSystemUI
             {
                 output = false;
             }
+
             int accessCode = 0;
             bool accessCodeIsValid = int.TryParse(accessCodeTextBox.Text, out accessCode);
-
             if (accessCodeIsValid == false)
             {
                 output = false;
@@ -76,31 +73,26 @@ namespace ExaminationSystemUI
             {
                 output = false;
             }
-
             //answer a validation
             if (answerATextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             //answer b validation
             if (answerBTextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             //answer c validation
             if (answerCTextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             //answer d validation
             if (answerDTextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             //correct answer validation
             if (correctAnswerTextBox.Text.Length == 0)
             {
@@ -119,7 +111,6 @@ namespace ExaminationSystemUI
         {
             if (ValidateAdminAddQuestion() == true)
             {
-
                 QuestionModel model = new QuestionModel(
                      examNameTextBox.Text,
                      questionNameTextBox.Text,
@@ -137,7 +128,6 @@ namespace ExaminationSystemUI
                 createdQuestionListBox.DataSource = addedQuestion;
                 createdQuestionListBox.DisplayMember = "FullName";
 
-
                 questionNameTextBox.Text = "";
                 answerATextBox.Text = "";
                 answerBTextBox.Text = "";
@@ -154,14 +144,12 @@ namespace ExaminationSystemUI
         private void deleteSelectedButton_Click(object sender, EventArgs e)
         {
             QuestionModel model = (QuestionModel)createdQuestionListBox.SelectedItem;
-
             if (model != null)
             {
                 addedQuestion.Remove(model);
                 foreach (QuestionModel item in addedQuestion)
                 {
                     item.QuestionNumber = addedQuestion.IndexOf(item) + 1;
-
                 }
 
                 createdQuestionListBox.DataSource = null;
@@ -173,7 +161,6 @@ namespace ExaminationSystemUI
         private bool ValidateAdminAddExam()
         {
             bool output = true;
-
             //exam name validation
             if (examNameTextBox.Text.Length == 0)
             {
@@ -186,7 +173,6 @@ namespace ExaminationSystemUI
             }
             int accessCode = 0;
             bool accessCodeIsValid = int.TryParse(accessCodeTextBox.Text, out accessCode);
-
             if (accessCodeIsValid == false)
             {
                 output = false;
@@ -196,37 +182,31 @@ namespace ExaminationSystemUI
             {
                 output = false;
             }
-
             //answer a validation
             if (answerATextBox.Text.Length != 0)
             {
                 output = false;
             }
-
             //answer b validation
             if (answerBTextBox.Text.Length != 0)
             {
                 output = false;
             }
-
             //answer c validation
             if (answerCTextBox.Text.Length != 0)
             {
                 output = false;
             }
-
             //answer d validation
             if (answerDTextBox.Text.Length != 0)
             {
                 output = false;
             }
-
             //correct answer validation
             if (correctAnswerTextBox.Text.Length != 0)
             {
                 output = false;
             }
-
             return output;
         }
 
@@ -238,7 +218,6 @@ namespace ExaminationSystemUI
                 {
                     GlobalConfig.Connection.CreateQuestion(item);
                     allQuestionsList.Add(item);
-
                 }
                 ExamModel model = new ExamModel();
                 model.AccessCode = int.Parse(accessCodeTextBox.Text);
@@ -249,24 +228,19 @@ namespace ExaminationSystemUI
                 GlobalConfig.Connection.CreateExam(model);
 
                 addedQuestion.Clear();
-
                 accessCodeTextBox.Text = "";
                 examNameTextBox.Text = "";
                 createdQuestionListBox.DataSource = null;
                 createdQuestionListBox.DataSource = addedQuestion;
-
                 allExamList.Add(model);
-
             }
         }
 
         //code for editing exam
         private List<ExamModel> allExamList = GlobalConfig.Connection.GetExams();
         private List<ExamModel> adminExams = new List<ExamModel>();
-
         private List<QuestionModel> allQuestionsList = GlobalConfig.Connection.GetQuestions();
         private List<QuestionModel> examQuestions = new List<QuestionModel>();
-
         private void selectExamEditComboBox_Click(object sender, EventArgs e)
         {
             adminExams.Clear();
@@ -284,7 +258,6 @@ namespace ExaminationSystemUI
         }
 
         private ExamModel selectedExam = new ExamModel();
-
         private void editExamButton_Click(object sender, EventArgs e)
         {
             examQuestions.Clear();
@@ -306,11 +279,9 @@ namespace ExaminationSystemUI
         }
 
         private QuestionModel selectedQuestion = new QuestionModel();
-
         private void questionForEditListBox_Click(object sender, EventArgs e)
         {
             selectedQuestion = (QuestionModel)questionForEditListBox.SelectedItem;
-
             editQuestionTextBox.Text = selectedQuestion.Question;
             editAnswerATextBox.Text = selectedQuestion.AnswerA;
             editAnswerBTextBox.Text = selectedQuestion.AnswerB;
@@ -322,16 +293,13 @@ namespace ExaminationSystemUI
         private void deleteEditedButton_Click(object sender, EventArgs e)
         {
             QuestionModel model = (QuestionModel)questionForEditListBox.SelectedItem;
-
             if (model != null)
             {
                 examQuestions.Remove(model);
                 foreach (QuestionModel item in examQuestions)
                 {
                     item.QuestionNumber = examQuestions.IndexOf(item) + 1;
-
                 }
-
                 questionForEditListBox.DataSource = null;
                 questionForEditListBox.DataSource = examQuestions;
                 questionForEditListBox.DisplayMember = "FullName";
@@ -369,7 +337,6 @@ namespace ExaminationSystemUI
             editAnswerCTextBox.Text = "";
             editAnswerDTextBox.Text = "";
             editCorrectAnswerTextBox.Text = "";
-
             selectedQuestion = null;
         }
 
@@ -382,7 +349,6 @@ namespace ExaminationSystemUI
             model.QuestionAmount = examQuestions.Count();
 
             GlobalConfig.Connection.UpdateExam(model, selectedExam);
-
             foreach (QuestionModel item in examQuestions)
             {
                 item.ExamName = editExamNameTextBox.Text;
@@ -400,34 +366,27 @@ namespace ExaminationSystemUI
             editAnswerCTextBox.Text = "";
             editAnswerDTextBox.Text = "";
             editCorrectAnswerTextBox.Text = "";
-
             questionForEditListBox.DataSource = null;
             questionForEditListBox.DataSource = examQuestions;
-
             selectedExam = null;
         }
 
         //code for editing profile
-
         private bool ValidateAdminEditProfile()
         {
             bool output = true;
-
             if (adminEditFirstNameTextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             if (adminEditLastNameTextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             if (adminEditUsernameTextBox.Text.Length == 0)
             {
                 output = false;
             }
-
             if (adminEditPasswordTextBox.Text.Length == 0)
             {
                 output = false;
@@ -459,11 +418,9 @@ namespace ExaminationSystemUI
         private List<ResultModel> allResult = GlobalConfig.Connection.GetResults();
         private List<ResultModel> allStudentCourses = GlobalConfig.Connection.GetStudentCourses();
         private List<ResultModel> examResult = new List<ResultModel>();
-       
-        
-
         private void selectExamResultComboBox_Click(object sender, EventArgs e)
         {
+            selectStudentResultComboBox.DataSource = null;
             resultListBox.DataSource = null;
             examResult.Clear();
             selectExamResultComboBox.DataSource = null;
@@ -491,6 +448,7 @@ namespace ExaminationSystemUI
 
         private void selectStudentResultComboBox_Click(object sender, EventArgs e)
         {
+            selectExamResultComboBox.DataSource = null;
             resultListBox.DataSource = null;
             examResult.Clear();
             List<string> studentList1 = new List<string>();
@@ -499,7 +457,6 @@ namespace ExaminationSystemUI
                 studentList1.Add(model.StudentUserName);
             }
             List<string> studentList2 = studentList1.Distinct().ToList();
-
             
             selectStudentResultComboBox.DataSource = null;
             selectStudentResultComboBox.DataSource = studentList2;
